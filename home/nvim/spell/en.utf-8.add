@@ -45,6 +45,7 @@ covector
 cyclo
 DAE
 DAEs
+degeneracies
 der
 deviatoric
 diamagnetic
@@ -54,6 +55,7 @@ discretization
 discretizations
 discretize
 discretized
+discretizing
 dissipative
 Eidgenössische
 eigenspace
@@ -85,6 +87,7 @@ GitLab
 Grmela
 Grothendieck
 Grothendiek
+groupoid
 groupoids
 Hiptmair
 Hochschule
@@ -106,6 +109,7 @@ LaTeX
 Lefschetz
 Leyendecker
 linearisations
+linearization
 Lipschitz
 Lohmayer
 lossless
@@ -119,6 +123,7 @@ Melchiorri
 metriplectic
 Miroslav
 Modelica
+monoid
 monoidal
 monomorphism
 morphism
@@ -165,6 +170,7 @@ pseudoform
 pseudoforms
 pseudofunctor
 pseudofunctorially
+pushout
 Radko
 Ralf
 Ramy
@@ -172,6 +178,7 @@ Rashad
 rebase
 regenerator
 reindexing
+relabling
 REPL
 rerender
 rerenders
@@ -231,6 +238,7 @@ wrt
 Zürich
 Öttinger
 Λ
+θ
 π
 φ
 ω
