@@ -1,3 +1,3 @@
 #!/bin/sh
 set -e
-home-manager switch --flake .#markus
+home-manager switch --flake .
