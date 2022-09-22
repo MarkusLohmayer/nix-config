@@ -3,14 +3,17 @@
 
   home.packages = with pkgs; [
     neovim
-    
+
     # `fd` is a simple, fast and user-friendly alternative to `find`
     fd
     # combines the usability of The Silver Searcher with the raw speed of grep
     ripgrep
 
     stylua
-    
+
+    black
+
+    nodejs
     nodePackages.neovim
     nodePackages.prettier
   ];
@@ -21,7 +24,7 @@
 
   home.sessionVariables."EDITOR" = "nvim";
   home.shellAliases."v" = "nvim";
- 
+
   programs.zathura = {
     enable = true;
     extraConfig = ''
