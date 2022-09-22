@@ -64,6 +64,7 @@
           ./home/kitty.nix
           ./home/latex.nix
           ./home/neovim.nix
+          ./home/ssh.nix
           ./home/tmux.nix
           ./home/zsh.nix
         ];
