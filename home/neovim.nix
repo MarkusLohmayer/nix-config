@@ -4,9 +4,9 @@
   home.packages = with pkgs; [
     neovim
 
-    # `fd` is a simple, fast and user-friendly alternative to `find`
+    # modern replacement for `find`
     fd
-    # combines the usability of The Silver Searcher with the raw speed of grep
+    # modern replacement for `grep`
     ripgrep
 
     stylua

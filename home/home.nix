@@ -17,16 +17,6 @@
     };
   };
 
-
-  programs.bat = {
-    enable = true;
-    config = {
-      style = "plain";
-    };
-  };
-  home.shellAliases."cat" = "bat";
-
-
   home.shellAliases."f" = "vifm";
 
 

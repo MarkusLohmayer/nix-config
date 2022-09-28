@@ -131,6 +131,61 @@
     ];
   };
 
+  home.shellAliases = {
+    g = "git";
+
+    gst = "git status";
+
+    glg = "git log";
+    glgg = "git log --graph";
+    glo = "git log --oneline --decorate";
+
+    gd = "git diff";
+    gds = "git diff --staged";
+
+    ga = "git add";
+    gaa = "git add --all";
+    gap = "git add --patch";
+
+    gmv = "git mv";
+    grm = "git rm";
+
+    gc = "git commit -v";
+    gcmsg = "git commit -m";
+    "gc!" = "git commit -v --amend";
+
+    gf = "git fetch";
+
+    gl = "git pull";
+    glr = "git pull --rebase";
+
+    gp = "git push";
+    "gpf!" = "git push --force";
+
+    gb = "git branch";
+    gba = "git branch -a";
+    gbd = "git branch -d";
+    gbD = "git branch -D";
+
+    gsw = "git switch";
+    gswm = "git switch $(git_main_branch)";
+    gswd = "git switch $(git_develop_branch)";
+    gswc = "git switch --create";
+
+    grb = "git rebase";
+    grbi = "git rebase -i";
+    grbc = "git rebase --continue";
+    grba = "git rebase --abort";
+    grbm = "git rebase $(git_main_branch)";
+    grbd = "git rebase $(git_develop_branch)";
+    grbom = "git rebase origin/$(git_main_branch)";
+    grbod = "git rebase origin/$(git_develop_branch)";
+
+    gm = "git merge";
+
+    gco = "git checkout";
+  };
+
 
   programs.gh = {
     enable = true;
