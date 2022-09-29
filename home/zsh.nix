@@ -4,16 +4,23 @@
     enable = true;
     dotDir = ".config/zsh";
     enableCompletion = true;
-    # enableSyntaxHighlighting = true;
     # enableAutosuggestions = true;
     autocd = true;
     # save timestamp in history
     history.extended = true;
-    # initExtraBeforeCompInit = ''
     initExtra = ''
       # ZSH_DISABLE_COMPFIX="true"
 
       setopt AUTO_PUSHD
+
+      unsetopt MENU_COMPLETE
+      setopt AUTO_MENU
+      setopt COMPLETE_IN_WORD
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+
+      setopt ALWAYS_TO_END
+
+      unsetopt FLOW_CONTROL
 
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
