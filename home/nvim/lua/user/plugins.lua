@@ -46,7 +46,7 @@ return packer.startup(function(use)
   -- an implementation of the popup API from vim in Neovim
 	use "nvim-lua/popup.nvim"
 
-  -- Useful lua functions used ny lots of plugins
+  -- Useful lua functions used by lots of plugins
 	use "nvim-lua/plenary.nvim"
 
   -- autopairs, integrates with both cmp and treesitter
@@ -86,7 +86,7 @@ return packer.startup(function(use)
 	use "lukas-reineke/indent-blankline.nvim"
 
   -- greeter
-	use "goolord/alpha-nvim"
+	-- use "goolord/alpha-nvim"
 
   -- this is needed to fix lsp doc highlight
 	use "antoinemadec/FixCursorHold.nvim"

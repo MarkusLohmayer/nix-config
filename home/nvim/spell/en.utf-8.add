@@ -1,5 +1,7 @@
 1
 Abelian
+accessor
+accessors
 acset
 acsets
 adjoint
@@ -30,11 +32,14 @@ codec
 codomain
 cograph
 coisotropic
+colimit
 combinatorial
 commutativity
 composable
 compositional
+compositional
 compositionality
+consitutive
 contravariant
 contravariantly
 copresheaf
@@ -46,6 +51,7 @@ cyclo
 DAE
 DAEs
 degeneracies
+degeracies
 der
 deviatoric
 diamagnetic
@@ -95,6 +101,8 @@ homomorphisms
 HTML
 hyperparameter
 i3
+interpretable
+invariants
 isomorphism
 isomorphisms
 isothermal
@@ -135,9 +143,12 @@ multicategory
 multilinear
 multiphysical
 multiphysics
+mutator
+mutators
 namespace
 naturality
 Navier
+Neovim
 nondegenerate
 nonequilibrium
 nonisothermal
@@ -216,6 +227,7 @@ telemanipulation
 Tetrode
 thermoacoustic
 thermodynamically
+thermodynamics
 TikZ
 timestamp
 timesteps
@@ -225,6 +237,7 @@ UI
 undirected
 unhoped
 Universität
+unphysical
 unselect
 untyped
 UWD
@@ -236,7 +249,9 @@ WebSocket
 Weinstein
 wrt
 Zürich
+ᵈ
 Öttinger
+ˢᵗ
 Λ
 θ
 π
