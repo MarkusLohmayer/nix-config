@@ -1,10 +1,14 @@
 {
-  description = "Nix system configuration of Markus Lohmayer";
+  description = "Nix system and home configuration of Markus Lohmayer";
 
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
+
+    # flake-utils = {
+    #   url = "github:numtide/flake-utils";
+    # };
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
@@ -52,22 +56,53 @@
             ./configuration.nix
           ];
         };
+        m-one = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = attrValues self.darwinModules ++ [
+            ./configuration.nix
+          ];
+        };
       };
 
 
-      homeConfigurations.markus = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-        modules = [
-          ./home/home.nix
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            ./nixos/configuration.nix
+          ];
+        };
+      };
 
-          ./home/git.nix
-          ./home/kitty.nix
-          ./home/latex.nix
-          ./home/neovim.nix
-          ./home/ssh.nix
-          ./home/tmux.nix
-          ./home/zsh.nix
-        ];
+
+      homeConfigurations = {
+        "markus@m-one" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./home/home.nix
+
+            ./home/git.nix
+            ./home/julia.nix
+            ./home/kitty.nix
+            ./home/latex.nix
+            ./home/neovim.nix
+            ./home/ssh.nix
+            ./home/tmux.nix
+            ./home/zsh.nix
+          ];
+        };
+        "markus@nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          modules = [
+            ./home/home-nixos.nix
+
+            ./home/git.nix
+            ./home/neovim.nix
+            ./home/ssh.nix
+            ./home/tmux.nix
+            ./home/zsh.nix
+          ];
+        };
       };
 
 

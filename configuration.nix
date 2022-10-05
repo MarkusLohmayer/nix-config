@@ -3,24 +3,26 @@
   # https://daiderd.com/nix-darwin/manual/
 
   nix = {
-    binaryCaches = [
-      "https://cache.nixos.org/"
-    ];
-    binaryCachePublicKeys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    ];
-    trustedUsers = [
-      "@admin"
-    ];
+    settings = {
+      substituters = [
+        "https://cache.nixos.org/"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      ];
+      trusted-users = [
+        "@admin"
+      ];
+      auto-optimise-store = true;
+    };
     extraOptions = ''
-      auto-optimise-store = true
       experimental-features = nix-command flakes
     '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
+    configureBuildUsers = true;
   };
 
-  users.nix.configureBuildUsers = true;
 
   services.nix-daemon.enable = true;
 
@@ -55,8 +57,8 @@
   };
 
   # keyboard settings
-  # system.keyboard.enableKeyMapping = true;
-  # system.keyboard.remapCapsLockToEscape = true;
+  system.keyboard.enableKeyMapping = true;
+  system.keyboard.remapCapsLockToEscape = true;
   system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 10;
@@ -96,7 +98,7 @@
   system.defaults.dock.orientation = "bottom";
   system.defaults.dock.tilesize = 50;
   system.defaults.dock.autohide = true;
-  system.defaults.dock.autohide-delay = "0.15";
+  system.defaults.dock.autohide-delay = 0.15;
   system.defaults.dock.show-recents = true;
   # show icons of hidden applications as translucent
   system.defaults.dock.showhidden = true;
@@ -114,7 +116,7 @@
 
 
   # Add ability to use TouchID for sudo authentication
-  # security.pam.enableSudoTouchIdAuth = true;
+  security.pam.enableSudoTouchIdAuth = true;
 
   # Example config:
   # https://github.com/LnL7/nix-darwin/blob/master/modules/examples/lnl.nix

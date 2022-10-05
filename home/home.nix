@@ -3,10 +3,11 @@
 {
   # https://rycee.gitlab.io/home-manager/options.html
 
-  home.stateVersion = "22.05";
-
-  home.username = "markus";
-  home.homeDirectory = "/Users/markus";
+  home = {
+    stateVersion = "22.05";
+    username = "markus";
+    homeDirectory = "/Users/markus";
+  };
 
   programs.htop = {
     enable = true;
@@ -22,15 +23,16 @@
 
   home.shellAliases."audio-dl" = "youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0";
 
+  # TODO how to use hostname in variable? (want "$HOME/${host}-scripts")
   home.sessionPath = [
-    "$HOME/ltd-staff12-scripts"
+    "$HOME/scripts"
   ];
 
 
   home.packages = with pkgs; [
 
-    # ls -G (colors) not working
-    # coreutils
+    # ls -G (colors) not working (but now using exa)
+    coreutils
 
     curl
     wget
@@ -63,7 +65,7 @@
     # useful macOS CLI commands
     m-cli
     # select default applications for document types and URL schemes
-    # duti
+    duti
   ];
 
 }

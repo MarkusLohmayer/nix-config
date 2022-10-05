@@ -16,6 +16,7 @@ backend
 Badlyan
 barotropic
 barotropicity
+Beate
 Beattie
 bilinear
 bivector
@@ -43,6 +44,8 @@ consitutive
 contravariant
 contravariantly
 copresheaf
+coproduct
+coproducts
 cospan
 cospans
 covariant
@@ -114,6 +117,7 @@ JSON
 Jupyter
 Kotyczka
 LaTeX
+laxator
 Lefschetz
 Leyendecker
 linearisations
@@ -129,6 +133,7 @@ MATLAB
 Mehrmann
 Melchiorri
 metriplectic
+Mirdelsberg
 Miroslav
 Modelica
 monoid

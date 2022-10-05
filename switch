@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# show output of all commands
+set +x
+set -e
+
+darwin() {
+  nix --experimental-features 'nix-command flakes' build .#darwinConfigurations.$(hostname -s).system
+  sudo -H ./result/sw/bin/darwin-rebuild switch --flake .
+}
+
+m_one_home() {
+  home-manager switch --flake .#markus@m-one
+}
+
+nixos() {
+  sudo nixos-rebuild switch --impure --flake .#
+}
+
+nixos_home() {
+  home-manager switch --flake .#markus@nixos
+}
+
+case $1 in
+  "darwin")
+    darwin;;
+  "m_one_home")
+    m_one_home;;
+  "nixos")
+    nixos;;
+  "nixos_home")
+    nixos_home;;
+  *)
+    echo "expected either of 'darwin', 'm_one_home', 'nixos', 'nixos_home'";;
+esac
