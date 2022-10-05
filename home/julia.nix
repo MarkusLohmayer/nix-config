@@ -15,17 +15,13 @@
 
     # syntax highlighting and other enhancements for the Julia REPL
     # https://github.com/KristofferC/OhMyREPL.jl
-    atreplinit() do repl
-        try
-            @eval using OhMyREPL
-            @async begin
-                # deactivate bracket completion for vim-slime to work
-                OhMyREPL.enable_autocomplete_brackets(false)
-            end
-        catch e
-            @warn(e.msg)
-        end
+    try
+        using OhMyREPL
+    catch e
+        @warn(e.msg)
     end
+    # deactivate bracket completion for vim-slime to work
+    OhMyREPL.enable_autocomplete_brackets(false)
 
     # automatically activate the environment
     # if the current folder is a project folder
