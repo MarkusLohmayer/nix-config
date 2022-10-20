@@ -1,5 +1,6 @@
 1
 Abelian
+acausal
 accessor
 accessors
 acset
@@ -10,6 +11,8 @@ advection
 advects
 antisymmetric
 Arjan
+associatively
+associativity
 automorphism
 automorphisms
 backend
@@ -18,6 +21,7 @@ barotropic
 barotropicity
 Beate
 Beattie
+bijection
 bilinear
 bivector
 Braun
@@ -25,6 +29,7 @@ Bursztyn
 CAE
 Califano
 Cartan
+Cartan's
 Casimir
 Chatelier
 cochain
@@ -100,6 +105,7 @@ groupoid
 groupoids
 Hiptmair
 Hochschule
+homomorphism
 homomorphisms
 HTML
 hyperparameter
@@ -117,6 +123,7 @@ JSON
 Jupyter
 Kotyczka
 LaTeX
+Lawvere
 laxator
 Lefschetz
 Leyendecker
@@ -136,8 +143,10 @@ metriplectic
 Mirdelsberg
 Miroslav
 Modelica
+monographic
 monoid
 monoidal
+monoids
 monomorphism
 morphism
 morphisms
@@ -157,6 +166,7 @@ Neovim
 nondegenerate
 nonequilibrium
 nonisothermal
+nonlinearities
 nvim
 Nürnberg
 Observables
@@ -190,6 +200,7 @@ pushout
 Radko
 Ralf
 Ramy
+Raphson
 Rashad
 rebase
 regenerator
@@ -199,6 +210,7 @@ REPL
 rerender
 rerenders
 resistive
+reusability
 RHS
 Riemannian
 Sackur
@@ -210,6 +222,7 @@ semidefiniteness
 semidirect
 Sigrid
 simplical
+Simulink
 SMC
 Stramigioli
 Störmer
@@ -237,8 +250,11 @@ TikZ
 timestamp
 timesteps
 tmux
+tokamak
+Topos
 trackpad
 UI
+undamped
 undirected
 unhoped
 Universität

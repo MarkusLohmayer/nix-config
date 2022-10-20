@@ -136,7 +136,7 @@
 
     gst = "git status";
 
-    glg = "git log";
+    glg = "git log --name-status";
     glgg = "git log --graph";
     glo = "git log --oneline --decorate";
 

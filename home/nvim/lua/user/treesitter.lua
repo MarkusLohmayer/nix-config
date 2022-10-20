@@ -4,26 +4,50 @@ if not status_ok then
 end
 
 configs.setup {
-  -- ensure_installed = ["bash", "bibtex", "c", "cpp", "css", "cuda", "dockerfile", "go", "haskell", "html", "javascript", "json", "julia", "latex", "llvm", "lua", "make", "nix", "perl", "python", "regex", "rust", "toml", "typescript", "vim", "yaml"],
-  ensure_installed = { "bash", "bibtex", "css", "html", "julia", "latex", "lua", "markdown", "nix", "python", "svelte", "typescript" },
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "" }, -- List of parsers to ignore installing
+  ensure_installed = {
+    "bash",
+    "bibtex",
+    "c",
+    "cpp",
+    "css",
+    "haskell",
+    "html",
+    "javascript",
+    "json",
+    "julia",
+    "latex",
+    "lua",
+    "make",
+    "markdown",
+    "nix",
+    "python",
+    "rust",
+    "svelte",
+    "toml",
+    "typescript",
+    "yaml",
+  },
+  -- sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  -- ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {
     enable = true,
   },
   highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
+    enable = true,
+    disable = { "latex" },
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true, disable = { "julia", "yaml" } },
+  indent = {
+    enable = true,
+    disable = { "julia", "yaml" }
+  },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
   },
   rainbow = {
     enable = true,
-    -- disable = { "jsx", "cpp" }
+    --[[ disable = { "jsx", "cpp" } ]]
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
     -- colors = {}, -- table of hex strings

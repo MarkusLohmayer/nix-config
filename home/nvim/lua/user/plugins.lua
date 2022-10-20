@@ -173,6 +173,7 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	}
+  use "nvim-treesitter/playground"
 
   -- use treesitter to set the comment string depending on cursor position
 	use "JoosepAlviste/nvim-ts-context-commentstring"

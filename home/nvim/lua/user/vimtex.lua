@@ -19,4 +19,5 @@ vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Overfull', 'Underfull', 'has a
 vim.cmd("let g:vimtex_complete_bib = {'simple': 1, 'recursive': 1}")
 
 -- syntax highlighting via Tree-sitter
-vim.g.vimtex_syntax_enabled = 0
+-- does not seem to be as mature yet as this plugin
+-- vim.g.vimtex_syntax_enabled = 0
