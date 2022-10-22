@@ -13,9 +13,10 @@ bufferline.setup {
     -- NOTE: this plugin is designed with this icon in mind,
     -- and so changing this is NOT recommended, this is intended
     -- as an escape hatch for people who cannot bear it for whatever reason
+	indicator_icon = nil,
     indicator = {
-        icon = "▎",
-        style = "icon",
+      style = "icon",
+      icon = "▎",
     },
     buffer_close_icon = "",
     -- buffer_close_icon = '',
@@ -124,17 +125,17 @@ bufferline.setup {
     duplicate_selected = {
       fg = { attribute = "fg", highlight = "TabLineSel" },
       bg = { attribute = "bg", highlight = "TabLineSel" },
-      italic = true,
+      underline = true,
     },
     duplicate_visible = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
-      italic = true,
+      underline = true,
     },
     duplicate = {
       fg = { attribute = "fg", highlight = "TabLine" },
       bg = { attribute = "bg", highlight = "TabLine" },
-      italic = true,
+      underline = true,
     },
 
     modified = {

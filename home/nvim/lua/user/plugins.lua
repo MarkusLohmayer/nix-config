@@ -43,11 +43,12 @@ return packer.startup(function(use)
   -- have packer manage itself
 	use "wbthomason/packer.nvim"
 
-  -- an implementation of the popup API from vim in Neovim
-	use "nvim-lua/popup.nvim"
-
   -- Useful lua functions used by lots of plugins
 	use "nvim-lua/plenary.nvim"
+
+  -- an implementation of the popup API from vim in Neovim
+	-- use "nvim-lua/popup.nvim"
+
 
   -- autopairs, integrates with both cmp and treesitter
 	-- use "windwp/nvim-autopairs"
@@ -89,7 +90,7 @@ return packer.startup(function(use)
 	-- use "goolord/alpha-nvim"
 
   -- this is needed to fix lsp doc highlight
-	use "antoinemadec/FixCursorHold.nvim"
+	-- use "antoinemadec/FixCursorHold.nvim"
 
   -- show keymaps
 	use "folke/which-key.nvim"
@@ -123,44 +124,40 @@ return packer.startup(function(use)
 	-- color scheme
 	use "lunarvim/darkplus.nvim"
 
+
 	-- nvim-cmp completion plugin
 	use "hrsh7th/nvim-cmp"
-
   -- complete words from buffer
 	use "hrsh7th/cmp-buffer"
-
   -- complete paths
 	use "hrsh7th/cmp-path"
-
   -- completions for command mode and search
 	use "hrsh7th/cmp-cmdline"
-
   -- completion for snippets
 	use "saadparwaiz1/cmp_luasnip"
-
   -- completions from built-in language server client
 	use "hrsh7th/cmp-nvim-lsp"
-
+  -- completions for Neovim Lua API
+	use "hrsh7th/cmp-nvim-lua"
   -- completion for Unicode symbols based on LaTeX command
 	use "kdheepak/cmp-latex-symbols"
 
+
   --snippet engine
 	use "L3MON4D3/LuaSnip"
-
   -- a bunch of snippets to use
 	use "rafamadriz/friendly-snippets"
 
+
   -- language server configurations
 	use "neovim/nvim-lspconfig"
-
-  -- manage language servers with `:LspInstall`
-	use "williamboman/nvim-lsp-installer"
-
-  -- language server settings defined in json/yaml
-	use "tamago324/nlsp-settings.nvim"
-
+  -- simple to use language server installer
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
   -- for formatters and linters
 	use "jose-elias-alvarez/null-ls.nvim"
+  use "RRethy/vim-illuminate"
+
 
 	-- Telescope
 	use {
@@ -168,19 +165,17 @@ return packer.startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
+
 	-- Treesitter
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	}
   use "nvim-treesitter/playground"
-
   -- use treesitter to set the comment string depending on cursor position
 	use "JoosepAlviste/nvim-ts-context-commentstring"
-
   -- use treesitter for rainbow parenthesis
 	use "p00f/nvim-ts-rainbow"
-
   -- use treesitter for spell checking
 	use {
 		'lewis6991/spellsitter.nvim',
@@ -189,10 +184,12 @@ return packer.startup(function(use)
 		end
 	}
 
+
 	-- Git integration
 	use "lewis6991/gitsigns.nvim"
 
-
+  -- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
