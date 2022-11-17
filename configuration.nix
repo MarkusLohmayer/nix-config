@@ -23,9 +23,7 @@
     configureBuildUsers = true;
   };
 
-
   services.nix-daemon.enable = true;
-
 
   programs.zsh.enable = true;
 
@@ -33,9 +31,10 @@
     home-manager
   ];
 
-  # environment.systemPath = [
-  #   "/usr/local/bin"
-  # ];
+  environment.systemPath = [
+    "/opt/homebrew/bin"
+    "/usr/local/zfs/bin"
+  ];
 
   # environment.variables = rec {
   #     XDG_CONFIG_HOME = "$HOME/.config";
@@ -45,8 +44,6 @@
   # environment.variables = {
   #   TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
   # };
-
-  # programs.nix-index.enable = true;
 
   fonts = {
     fontDir.enable = true;

@@ -2,9 +2,7 @@ vim.g.tex_flavor = "latex"
 vim.g.vimtex_compiler_method = "latexmk"
 
 -- PDF viewer
-vim.g.vimtex_view_method = "general"
-vim.g.vimtex_view_general_viewer = "zathura"
-vim.g.vimtex_view_forward_search_on_start = 1
+vim.g.vimtex_view_method = "zathura"
 
 -- don't open quickfix window if there are only warnings
 vim.g.vimtex_quickfix_open_on_warning = 0
@@ -19,5 +17,4 @@ vim.cmd("let g:vimtex_quickfix_ignore_filters = ['Overfull', 'Underfull', 'has a
 vim.cmd("let g:vimtex_complete_bib = {'simple': 1, 'recursive': 1}")
 
 -- syntax highlighting via Tree-sitter
--- does not seem to be as mature yet as this plugin
--- vim.g.vimtex_syntax_enabled = 0
+vim.g.vimtex_syntax_enabled = 0

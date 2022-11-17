@@ -13,6 +13,27 @@ sh <(curl -L https://nixos.org/nix/install)
 ./switch m_one_home
 ```
 
+Further steps unrelated to Nix:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle
+```
+
+```
+curl -O https://raw.githubusercontent.com/xv0x7c0/osx-us-altgr-intl/master/us-altgr-intl.keylayout
+sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
+```
+
+```
+softwareupdate --install-rosetta
+```
+
+```
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_rsa
+```
+
 
 ## Related documentation
 

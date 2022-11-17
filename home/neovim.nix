@@ -16,6 +16,9 @@
     nodejs
     nodePackages.neovim
     nodePackages.prettier
+
+    # cargo is required to install Nix language server via mason.nvim
+    cargo
   ];
 
   # xdg.configFile."nvim".source = ./nvim;
@@ -99,5 +102,8 @@
       set recolor-keephue             true
     '';
   };
+
+  # SyncTeX requires dbus
+  home.sessionVariables."DBUS_SESSION_BUS_ADDRESS" = "unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET";
 
 }

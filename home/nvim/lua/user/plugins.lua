@@ -89,9 +89,6 @@ return packer.startup(function(use)
   -- greeter
 	-- use "goolord/alpha-nvim"
 
-  -- this is needed to fix lsp doc highlight
-	-- use "antoinemadec/FixCursorHold.nvim"
-
   -- show keymaps
 	use "folke/which-key.nvim"
 
@@ -146,7 +143,7 @@ return packer.startup(function(use)
   --snippet engine
 	use "L3MON4D3/LuaSnip"
   -- a bunch of snippets to use
-	use "rafamadriz/friendly-snippets"
+	-- use "rafamadriz/friendly-snippets"
 
 
   -- language server configurations
@@ -154,9 +151,10 @@ return packer.startup(function(use)
   -- simple to use language server installer
   use "williamboman/mason.nvim"
   use "williamboman/mason-lspconfig.nvim"
-  -- for formatters and linters
+  -- integrate formatters and linters
 	use "jose-elias-alvarez/null-ls.nvim"
-  use "RRethy/vim-illuminate"
+  -- automatically highlight other uses of a word
+  -- use "RRethy/vim-illuminate"
 
 
 	-- Telescope

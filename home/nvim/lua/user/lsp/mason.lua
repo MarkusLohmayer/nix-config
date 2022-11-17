@@ -5,13 +5,13 @@ local servers = {
 	"jsonls",
 	"pyright",
 	"sumneko_lua",
-	"tsserver", -- JavaScript, TypeScript
+	-- "tsserver", -- JavaScript, TypeScript
 	"yamlls",
-  "clangd",
-  "hls", -- Haskell
+  -- "clangd",
+  -- "hls", -- Haskell
   "julials",
   "rnix", -- Nix
-  "svelte",
+  -- "svelte",
 }
 
 local settings = {
