@@ -18,6 +18,14 @@
     };
   };
 
+  programs.nix-index.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   home.shellAliases."f" = "vifm";
 
 
@@ -43,13 +51,11 @@
     # nodejs
     # nodePackages.typescript
 
+    comma
+
     vifm
 
-    # Useful nix related tools
-    # cachix # adding/managing alternative binary caches hosted by Cachix
-    # comma # run software from without installing it
-    # niv # easy dependency management for nix projects
-    # nodePackages.node2nix
+    helix
 
     pandoc
 

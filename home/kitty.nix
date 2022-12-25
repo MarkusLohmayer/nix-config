@@ -22,8 +22,10 @@
       tab_title_template = "{index}: {title}";
       active_tab_font_style = "bold";
       inactive_tab_font_style = "normal";
-  
+
       # keyboard settings
+      # use the left option key as an alt key and
+      # leave the right option key for Unicode input
       macos_option_as_alt = "left";
 
       # mouse settings
@@ -33,6 +35,10 @@
       enable_audio_bell = "no";
       visual_bell_duration = "0.0";
       bell_on_tab = "🔔 ";
+    };
+    keybindings = {
+      # disable edit config file
+      "cmd+," = "no_op";
     };
   };
 }

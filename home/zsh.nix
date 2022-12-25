@@ -26,6 +26,10 @@
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
 
+      function take {
+        mkdir -p $@ && cd $@
+      }
+
       function wake {
         curl -XPOST http://ltd-monitor.ltd.uni-erlangen.de/api/wake/$1
       }

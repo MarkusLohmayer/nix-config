@@ -19,9 +19,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, ... }:
+  outputs = { self, nixpkgs, darwin, home-manager, nix-index-database, ... }:
     let
 
       inherit (nixpkgs.lib)
@@ -79,6 +84,7 @@
         "markus@m-one" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
+            nix-index-database.hmModules.nix-index
             ./home/home.nix
 
             ./home/git.nix
