@@ -5,38 +5,90 @@ Nix flake containing
 - [home-manager](https://github.com/nix-community/home-manager) user configuration
 
 
-## Installation
+## Nix
+
+Installation:
 
 ```
 sh <(curl -L https://nixos.org/nix/install)
+```
+
+Documentation:
+- [Nix language](https://nixos.org/manual/nix/stable/language)
+
+
+## System configuration
+
+Activation:
+
+```
 ./switch darwin
+```
+
+Documentation:
+- [nix-darwin](https://daiderd.com/nix-darwin/manual)
+
+
+## User configuration
+
+Activation:
+
+```
 ./switch m_one_home
 ```
 
-Further steps unrelated to Nix:
+Documentation:
+- [home-manager](https://nix-community.github.io/home-manager)
+
+
+## Update flake lock file
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle
+nix flake update
 ```
 
-```
-curl -O https://raw.githubusercontent.com/xv0x7c0/osx-us-altgr-intl/master/us-altgr-intl.keylayout
-sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
-```
 
-```
-softwareupdate --install-rosetta
-```
+## Further setup steps on macOS
+
+### Add SSH key
 
 ```
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 ```
 
+### Homebrew
 
-## Related documentation
+Installation:
 
-- [Nix language](https://nixos.org/manual/nix/stable/language)
-- [home-manager](https://nix-community.github.io/home-manager)
-- [nix-darwin](https://daiderd.com/nix-darwin/manual)
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install all dependencies from the Brewfile:
+
+```
+brew bundle  --no-upgrade --cleanup
+```
+
+
+Install and upgrade all dependencies from the Brewfile:
+
+```
+brew bundle --cleanup
+```
+
+
+### Install keyboard layout (used with Kyria keyboard)
+
+```
+curl -O https://raw.githubusercontent.com/xv0x7c0/osx-us-altgr-intl/master/us-altgr-intl.keylayout
+sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
+```
+
+
+### Install Apple Rosetta (x86 emulation on arm64)
+
+```
+softwareupdate --install-rosetta
+```
