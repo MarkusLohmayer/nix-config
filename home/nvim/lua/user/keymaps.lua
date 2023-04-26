@@ -3,7 +3,7 @@ local opts = { noremap = true, silent = true }
 
 -- local term_opts = { silent = true }
 
---Remap space as leader key
+-- remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -14,6 +14,10 @@ local visual_mode = "v"
 local visual_block_mode = "x"
 local term_mode = "t"
 local command_mode = "c"
+
+-- keep cursor centered while moving half page up/down
+keymap(normal_mode, "<C-u>", "<C-u>zz", opts)
+keymap(normal_mode, "<C-d>", "<C-d>zz", opts)
 
 -- Better window navigation
 -- keymap(normal_mode, "<C-h>", "<C-w>h", opts)

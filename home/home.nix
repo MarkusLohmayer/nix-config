@@ -40,7 +40,7 @@
   home.packages = with pkgs; [
 
     # ls -G (colors) not working (but now using exa)
-    coreutils
+    # coreutils
 
     curl
     wget
