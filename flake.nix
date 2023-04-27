@@ -94,6 +94,7 @@
             ./home/neovim.nix
             ./home/ssh.nix
             ./home/tmux.nix
+            ./home/zathura.nix
             ./home/zsh.nix
           ];
         };

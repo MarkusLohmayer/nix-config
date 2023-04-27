@@ -3,6 +3,10 @@
 Nix flake containing
 - [nix-darwin](https://github.com/LnL7/nix-darwin) system configuration
 - [home-manager](https://github.com/nix-community/home-manager) user configuration
+- [Neovim](https://github.com/neovim/neovim) configuration
+
+Currently, the Neovim configuration is included via
+an [out-of-store symlink](https://github.com/nix-community/home-manager/commit/91551c09d48583230b36cf759ad703b5f1d83d9a).
 
 
 ## Nix
@@ -48,7 +52,7 @@ nix flake update
 ```
 
 
-## Further setup steps on macOS
+## Further setup steps on macOS beyond Nix
 
 ### Add SSH key
 
@@ -65,12 +69,11 @@ Installation:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Install all dependencies from the Brewfile:
+Install packages according to Brewfile:
 
 ```
 brew bundle  --no-upgrade --cleanup
 ```
-
 
 Install and upgrade all dependencies from the Brewfile:
 

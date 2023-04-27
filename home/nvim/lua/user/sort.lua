@@ -1,21 +1,28 @@
-require("sort").setup {
-  -- List of delimiters, in descending order of priority, to automatically
-  -- sort on.
-  delimiters = {
-    ',',
-    '|',
-    ';',
-    ':',
-    's', -- Space
-    't'  -- Tab
-   }
+local M = {
+  "sQVe/sort.nvim",
+  commit = "c789da6968337d2a61104a929880b5f144e02855",
+  event = "VeryLazy",
 }
 
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+function M.config()
+  require("sort").setup {
+    -- List of delimiters, in descending order of priority, to automatically sort on.
+    delimiters = {
+      ",",
+      "|",
+      ";",
+      ":",
+      "s", -- Space
+      "t", -- Tab
+    },
+  }
+end
 
-keymap("n", "gs", "<Cmd>Sort i<CR>", opts)
-keymap("v", "gs", "<Esc><Cmd>Sort i<CR>", opts)
 
-keymap("n", "gS", "<Cmd>Sort<CR>", opts)
-keymap("v", "gS", "<Esc><Cmd>Sort<CR>", opts)
+Map("n", "gs", "<Cmd>Sort i<CR>", "sort (case-insensitive)")
+Map("v", "gs", "<Esc><Cmd>Sort i<CR>", "sort (case-insensitive)")
+
+Map("n", "gS", "<Cmd>Sort<CR>", "sort (case-sensitive)")
+Map("v", "gS", "<Esc><Cmd>Sort<CR>", "sort (case-sensitive)")
+
+return M

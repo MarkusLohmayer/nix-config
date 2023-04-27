@@ -1,20 +1,17 @@
-require('Navigator').setup {
-    -- When you want to save the modified buffers when moving to tmux
-    -- nil - Don't save (default)
-    -- 'current' - Only save the current modified buffer
-    -- 'all' - Save all the buffers
-    auto_save = nil,
-
-    -- Disable navigation when tmux is zoomed in
-    disable_on_zoom = false
+local M = {
+  "numToStr/Navigator.nvim",
+  commit = "91d86506ac2a039504d5205d32a1d4bc7aa57072",
+  event = { "VimEnter", "InsertEnter", "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
 }
 
+function M.config()
+  local navigator = require "Navigator"
+  navigator.setup()
+end
 
-local keymap = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+Map({ "n", "t" }, "<A-h>", "<CMD>NavigatorLeft<CR>", "move left")
+Map({ "n", "t" }, "<A-j>", "<CMD>NavigatorDown<CR>", "move down")
+Map({ "n", "t" }, "<A-k>", "<CMD>NavigatorUp<CR>", "move up")
+Map({ "n", "t" }, "<A-l>", "<CMD>NavigatorRight<CR>", "move right")
 
-keymap('n', "<A-h>", '<CMD>NavigatorLeft<CR>', opts)
-keymap('n', "<A-l>", '<CMD>NavigatorRight<CR>', opts)
-keymap('n', "<A-k>", '<CMD>NavigatorUp<CR>', opts)
-keymap('n', "<A-j>", '<CMD>NavigatorDown<CR>', opts)
-keymap('n', "<A-p>", '<CMD>NavigatorPrevious<CR>', opts)
+return M
