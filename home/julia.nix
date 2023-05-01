@@ -2,29 +2,23 @@
 {
 
   home.file.".julia/config/startup.jl".text = ''
-    using Pkg
+    import Pkg
 
-    # automatically reload code of imported libraries
-    # https://timholy.github.io/Revise.jl/stable/config
-    try
-        using Revise
-    catch e
-        @warn "Error initializing Revise" exception=(e, catch_backtrace())
+    let
+        pkgs = ["Revise", "OhMyREPL"]
+        for pkg in pkgs
+          if Base.find_package(pkg) === nothing
+              Pkg.add(pkg)
+          end
+        end
     end
 
+    using Revise
 
-    # syntax highlighting and other enhancements for the Julia REPL
-    # https://github.com/KristofferC/OhMyREPL.jl
-    try
-        using OhMyREPL
-    catch e
-        @warn(e.msg)
-    end
-    # deactivate bracket completion for vim-slime to work
+    using OhMyREPL
     OhMyREPL.enable_autocomplete_brackets(false)
+    colorscheme!("BoxyMonokai256")
 
-    # automatically activate the environment
-    # if the current folder is a project folder
     if isfile("Project.toml") && isfile("Manifest.toml")
         Pkg.activate(".")
     end
