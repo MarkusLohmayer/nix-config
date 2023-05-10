@@ -5,7 +5,11 @@ local M = {
 }
 
 function M.config()
-  require("which-key").setup {}
+  require("which-key").setup {
+    window = {
+      border = "single",
+    },
+  }
 end
 
 return M

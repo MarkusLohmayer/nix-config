@@ -5,6 +5,7 @@
   "bufdelete.nvim": { "branch": "master", "commit": "8933abc09df6c381d47dc271b1ee5d266541448e" },
   "bufferline.nvim": { "branch": "main", "commit": "c7492a76ce8218e3335f027af44930576b561013" },
   "catppuccin-mocha": { "branch": "main", "commit": "3e91672945ae882098556cbade4f47987e6bae6b" },
+  "cinnamon.nvim": { "branch": "master", "commit": "c406ffda3a0302f32c23b24ab756ea20467d6578" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "23c51b2a3c00f6abc4e922dbd7c3b9aca6992063" },
   "cmp-latex-symbols": { "branch": "main", "commit": "165fb66afdbd016eaa1570e41672c4c557b57124" },
