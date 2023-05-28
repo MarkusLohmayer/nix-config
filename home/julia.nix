@@ -5,7 +5,7 @@
     import Pkg
 
     let
-        pkgs = ["Revise", "OhMyREPL"]
+        pkgs = ["LanguageServer", "OhMyREPL", "Revise"]
         for pkg in pkgs
           if Base.find_package(pkg) === nothing
               Pkg.add(pkg)
@@ -13,11 +13,11 @@
         end
     end
 
-    using Revise
-
     using OhMyREPL
     OhMyREPL.enable_autocomplete_brackets(false)
     colorscheme!("BoxyMonokai256")
+
+    using Revise
 
     if isfile("Project.toml") && isfile("Manifest.toml")
         Pkg.activate(".")
