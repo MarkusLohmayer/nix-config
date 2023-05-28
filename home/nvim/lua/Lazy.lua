@@ -19,7 +19,7 @@ require("lazy").setup("user", {
     lazy = true,
     commit = "903f0fe542fc35b74f3c09494f9c175346dfa76d"
   },
-  ui = { wrap = "true" },
+  ui = { wrap = "true" }, -- pinned plugins, don't check for updates
   checker = { enabled = false },
   change_detection = { enabled = true },
   debug = false,

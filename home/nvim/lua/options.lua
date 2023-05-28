@@ -56,3 +56,5 @@ vim.opt.pumheight = 10                          -- pop up menu height
 vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 
 vim.opt.iskeyword:append "-"                    -- treat words with `-` as single words
+
+vim.g.markdown_folding = true
