@@ -5,12 +5,11 @@
     dotDir = ".config/zsh";
     enableCompletion = true;
     # enableAutosuggestions = true;
-    autocd = true;
-    # save timestamp in history
-    history.extended = true;
+    autocd = true; # enter directory if typed directly into shell
+    history.extended = true; # save timestamp in history
     initExtra = ''
-      # ZSH_DISABLE_COMPFIX="true"
-
+      # make cd behave like pushd (add to directory stack)
+      # use cd -<TAB> to naviagate to previous directory
       setopt AUTO_PUSHD
 
       unsetopt MENU_COMPLETE
@@ -25,6 +24,16 @@
       source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source ${pkgs.zsh-you-should-use}/share/zsh/plugins/you-should-use/you-should-use.plugin.zsh
+
+      # use ctrl-z to suspend/resume process
+      function _fg() {
+          zle push-input
+          BUFFER="fg"
+          zle accept-line
+      }
+      zle -N _fg
+      bindkey -M viins '^z' _fg
+      bindkey -M vicmd '^z' _fg
 
       function take {
         mkdir -p $@ && cd $@
@@ -51,17 +60,6 @@
   home.shellAliases = {
     "..." = "../..";
     "...." = "../../..";
-
-    ds = "dirs -v | head -n 10";
-    "1" = "cd -1";
-    "2" = "cd -2";
-    "3" = "cd -3";
-    "4" = "cd -4";
-    "5" = "cd -5";
-    "6" = "cd -6";
-    "7" = "cd -7";
-    "8" = "cd -8";
-    "9" = "cd -9";
 
     l = "ls -lah";
   };
