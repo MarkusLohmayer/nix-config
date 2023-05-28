@@ -48,6 +48,6 @@ Reboot the system.
 - manually add symlink to launch Julia from the terminal:
 
 ```
-rm -f /usr/local/bin/julia
-ln -s /Applications/Julia-1.8.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
+sudo rm -f /usr/local/bin/julia
+sudo ln -s /Applications/Julia-1.9.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 ```
