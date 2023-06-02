@@ -46,7 +46,7 @@ vim.opt.updatetime = 300                        -- faster completion (4000ms def
 
 vim.opt.showtabline = 0                         -- always show tabs
 vim.opt.showmode = false                        -- we don't need to see things like -- INSERT -- anymore
-vim.opt.laststatus = 3                          -- only the last window will always have a status line
+vim.opt.laststatus = 3                          -- show status line for last window only
 vim.opt.ruler = false                           -- hide the line and column number of the cursor position
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.showcmd = false                         -- hide (partial) command in the last line of the screen (for performance)

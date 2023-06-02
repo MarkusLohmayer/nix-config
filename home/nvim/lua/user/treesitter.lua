@@ -26,13 +26,14 @@ function M.config()
 
   configs.setup {
     ensure_installed = { "bash", "julia", "latex", "lua", "markdown", "markdown_inline", "python", "toml", "yaml" },
-    ignore_install = { "" }, -- List of parsers to ignore installing
+    ignore_install = {}, -- List of parsers to ignore installing
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 
     highlight = {
       enable = true, -- false will disable the whole extension
       disable = { "css" }, -- list of language that will be disabled
     },
+
     rainbow = {
       enable = true,
       -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
@@ -41,9 +42,11 @@ function M.config()
       -- colors = {}, -- table of hex strings
       -- termcolors = {} -- table of colour name strings
     },
+
     autopairs = {
       enable = true,
     },
+
     indent = {
       enable = true,
       disable = { "css", "julia", "python" },
