@@ -22,6 +22,8 @@
     if isfile("Project.toml") && isfile("Manifest.toml")
         Pkg.activate(".")
     end
+
+    Base.active_repl.options.auto_indent = false
   '';
 
   home.file.".julia/config/startup_ijulia.jl".text = ''
