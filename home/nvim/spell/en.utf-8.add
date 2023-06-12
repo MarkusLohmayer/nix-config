@@ -146,8 +146,11 @@ hypergraph
 hyperparameter
 i3
 incompressible
+inductor
+inductors
 infeasible
 injective
+injectivity
 integrable
 integrators
 interpretable
@@ -216,6 +219,8 @@ multicategories
 multicategory
 multicospan
 multicospans
+multigraph
+multigraphs
 multilayer
 multilinear
 multiphysical
@@ -303,6 +308,7 @@ Riemannian
 Runge
 s
 Sackur
+scalable
 Schaft
 schemas
 Schuller
@@ -322,6 +328,7 @@ subcateogry
 subfolder
 subfolders
 subgraph
+subinterfaces
 submanifold
 submanifolds
 submodel

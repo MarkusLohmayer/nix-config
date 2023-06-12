@@ -1,4 +1,5 @@
 local M = {
+  -- smooth scrolling for any movement command
   "declancm/cinnamon.nvim",
   commit = "c406ffda3a0302f32c23b24ab756ea20467d6578",
   event = { "VimEnter", "InsertEnter", "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },

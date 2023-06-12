@@ -7,15 +7,9 @@
     let
         pkgs = ["LanguageServer", "OhMyREPL", "Revise"]
         for pkg in pkgs
-          if Base.find_package(pkg) === nothing
-              Pkg.add(pkg)
-          end
+          Base.find_package(pkg) === nothing && Pkg.add(pkg)
         end
     end
-
-    using OhMyREPL
-    OhMyREPL.enable_autocomplete_brackets(false)
-    colorscheme!("BoxyMonokai256")
 
     using Revise
 
@@ -23,7 +17,14 @@
         Pkg.activate(".")
     end
 
-    Base.active_repl.options.auto_indent = false
+    atreplinit() do repl
+        @eval begin
+          using OhMyREPL
+          OhMyREPL.enable_autocomplete_brackets(false)
+          colorscheme!("BoxyMonokai256")
+          Base.active_repl.options.auto_indent = false
+        end
+    end
   '';
 
   home.file.".julia/config/startup_ijulia.jl".text = ''
@@ -35,5 +36,9 @@
         @warn "Error initializing Revise" exception=(e, catch_backtrace())
     end
   '';
+
+  home.shellAliases = {
+    "pluto" = "julia -e 'using Pluto; Pluto.run()'";
+  };
 
 }
