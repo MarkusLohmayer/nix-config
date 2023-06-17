@@ -31,10 +31,10 @@
         command = "setlocal wrap";
       }
 
-      # {
-      #   event = ["BufWritePre"];
-      #   command = "lua vim.lsp.buf.format()";
-      # }
+      {
+        event = ["BufWritePre"];
+        command = "lua vim.lsp.buf.format()";
+      }
     ];
   };
 }

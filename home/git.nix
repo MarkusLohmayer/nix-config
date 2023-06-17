@@ -1,9 +1,7 @@
-{ config, pkgs, lib, ... }:
-
-{
+{...}: {
   programs.git = {
     enable = true;
-    userName  = "Markus Lohmayer";
+    userName = "Markus Lohmayer";
     userEmail = "markus.lohmayer@gmail.com";
     lfs.enable = true;
     extraConfig = {
@@ -61,7 +59,6 @@
       ".eggs/"
       "venv/"
 
-
       # Matlab, Simulink, Octave
       "*.asv"
       "*.m~"
@@ -75,7 +72,6 @@
       "*.slxc"
       "*.autosave"
       "octave-workspace"
-
 
       # LaTeX
       "*.aux"
@@ -185,7 +181,6 @@
 
     gco = "git checkout";
   };
-
 
   programs.gh = {
     enable = true;

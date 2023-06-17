@@ -1,11 +1,5 @@
-{
-  # config,
-  pkgs,
-  # lib,
-  ...
-}: {
-  # https://rycee.gitlab.io/home-manager/options.html
-
+# https://rycee.gitlab.io/home-manager/options.html
+{pkgs, ...}: {
   home = {
     stateVersion = "23.05";
     username = "markus";
@@ -36,13 +30,9 @@
     coreutils
 
     # curl
-    # wget
     tree
 
     # ncdu
-
-    # nodejs
-    # nodePackages.typescript
 
     comma
 

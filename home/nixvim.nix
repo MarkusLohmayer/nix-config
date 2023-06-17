@@ -1,7 +1,10 @@
-{ config, pkgs, libs, nixvim, ...}:
 {
+  config,
+  pkgs,
+  nixvim,
+  ...
+}: {
   home.packages = with pkgs; [
-
     (
       nixvim.legacyPackages."${system}".makeNixvimWithModule {
         inherit pkgs;

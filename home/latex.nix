@@ -1,6 +1,4 @@
-{ config, pkgs, libs, ...}:
-{
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     texlive.combined.scheme-full
 
@@ -25,5 +23,4 @@
     # TODO it seems not possible to remove *-eps-converted-to.pdf and *-blx.bib
     $clean_ext = 'aux bbl bcf blg fdb_latexmk fls glo ist nav nlo out ptc run.xml snm spl synctex(busy) toc upa xdv dvi';
   '';
-
 }

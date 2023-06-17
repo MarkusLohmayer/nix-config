@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{pkgs, ...}: {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -64,7 +63,6 @@
     l = "ls -lah";
   };
 
-
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
@@ -72,7 +70,7 @@
     settings = {
       add_newline = true;
 
-      git_branch = { symbol = "🌱 "; };
+      git_branch = {symbol = "🌱 ";};
       git_commit = {
         commit_hash_length = 4;
         tag_symbol = "🔖 ";
@@ -104,13 +102,11 @@
     };
   };
 
-
   # modern replacement for `ls`
   programs.exa = {
     enable = true;
     enableAliases = true;
   };
-
 
   # moden replacement for `cat`
   programs.bat = {
@@ -120,5 +116,4 @@
     };
   };
   home.shellAliases."cat" = "bat";
-
 }

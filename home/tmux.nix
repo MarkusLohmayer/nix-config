@@ -1,6 +1,4 @@
-{ config, pkgs, libs, ...}:
-{
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     tmux
   ];
@@ -77,5 +75,4 @@
     # activate mouse mode
     set -g mouse on
   '';
-
 }

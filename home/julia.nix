@@ -1,6 +1,4 @@
-{ config, pkgs, libs, ...}:
-{
-
+{pkgs, ...}: {
   home.packages = with pkgs; [
     julia-bin
   ];
@@ -48,5 +46,4 @@
   home.shellAliases = {
     "pluto" = "julia -e 'using Pluto; Pluto.run()'";
   };
-
 }

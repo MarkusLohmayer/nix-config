@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{...}: {
   programs.kitty = {
     enable = true;
     # https://sw.kovidgoyal.net/kitty/conf/
