@@ -187,6 +187,7 @@ Lipschitz
 Lohmayer
 lossless
 lossy
+Lua
 Lyapunov
 MacBook
 MacBooks
@@ -320,6 +321,7 @@ simplical
 Simulink
 SMC
 SMCs
+stator
 Stramigioli
 Störmer
 subalgebra
@@ -354,6 +356,7 @@ timestamp
 timesteps
 tmux
 tokamak
+TOML
 Topos
 trackpad
 Twente
@@ -390,4 +393,3 @@ Zürich
 π
 φ
 ω
-ᵈ

@@ -1,7 +1,11 @@
-{ pkgs, lib, ... }:
+# https://github.com/LnL7/nix-darwin
+# https://daiderd.com/nix-darwin/manual/
+# https://github.com/LnL7/nix-darwin/blob/master/modules/examples/lnl.nix
 {
-  # https://daiderd.com/nix-darwin/manual/
-
+  pkgs,
+  lib,
+  ...
+}: {
   nix = {
     settings = {
       substituters = [
@@ -15,11 +19,13 @@
       ];
       auto-optimise-store = false;
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
+    extraOptions =
+      ''
+        experimental-features = nix-command flakes
+      ''
+      + lib.optionalString (pkgs.system == "aarch64-darwin") ''
+        extra-platforms = x86_64-darwin aarch64-darwin
+      '';
     configureBuildUsers = true;
   };
 
@@ -35,20 +41,15 @@
     "/opt/homebrew/bin"
   ];
 
-  # environment.variables = rec {
-  #     XDG_CONFIG_HOME = "$HOME/.config";
-  # };
-
-  # https://github.com/nix-community/home-manager/issues/423
-  # environment.variables = {
-  #   TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
-  # };
+  environment.variables = {
+      XDG_CONFIG_HOME = "$HOME/.config";
+  };
 
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
       julia-mono
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Meslo" ]; })
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "Meslo"];})
     ];
   };
 
@@ -76,7 +77,6 @@
   # use extended print dialog by default
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint = true;
   system.defaults.NSGlobalDomain.PMPrintingExpandedStateForPrint2 = true;
-
 
   # Finder settings
   system.defaults.finder.AppleShowAllExtensions = true;
@@ -110,10 +110,6 @@
 
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
 
-
-  # Add ability to use TouchID for sudo authentication
+  # TouchID for sudo
   security.pam.enableSudoTouchIdAuth = true;
-
-  # Example config:
-  # https://github.com/LnL7/nix-darwin/blob/master/modules/examples/lnl.nix
 }

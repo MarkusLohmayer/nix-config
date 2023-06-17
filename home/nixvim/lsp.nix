@@ -5,46 +5,50 @@
         enable = true;
         servers = {
           bashls.enable = true;
+
           julials.enable = true; # must be installed from Julia
-          ltex.enable = true;
+
+          # ltex.enable = true;
+
           lua-ls.enable = true;
+
           nil_ls.enable = true;
+
           texlab = {
             enable = true;
-            extraOptions.settings = {
+            extraOptions.settings.texlab = {
               build = {
                 executable = "latexmk";
-                # args = { "-pdflatex", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                args = ["-pdflatex" "-interaction=nonstopmode" "-synctex=1" "%f"];
                 onSave = true;
-                forwardSearchAfter = true;
+                # forwardSearchAfter = true;
+              };
+              # for debugging:
+              # forwardSearch = {
+              #   executable = "kitty";
+              #   args = ["%l"];
+              # };
+              forwardSearch = {
+                executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
+                args = ["-r" "-g" "-b" "%l" "%p" "%f"];
               };
               # forwardSearch = {
-              #   -- executable = "zathura",
-              #   -- args = {
-              #   --   "--synctex-forward",
-              #   --   "%l:1:%f",
-              #   --   "%p",
-              #   -- },
-              #   executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
-              #   args = {
-              #     "-r", -- reload file
-              #     "-g", -- leave Skim in the background
-              #     "-b", -- show yellow reading bar
-              #     "%l", -- line number
-              #     "%p", -- pdf file
-              #     "%f", -- tex file
-              #   },
-              # },
+              #   executable = "zathura";
+              #   args = [
+              #     "--synctex-forward"
+              #     "%l:1:%f"
+              #     "%p"
+              #   ];
+              # };
               # chktex = {
-              #   onOpenAndSave = true,
-              # },
-              # -- diagnostics = {
-              # --   -- ignoredPatterns = {
-              # --   --   "Overfull",
-              # --   --   "Underfull",
-              # --   --   "has already been used",
-              # --   -- },
-              # -- },
+              #   onOpenAndSave = true;
+              # };
+              diagnostics = {
+                ignoredPatterns = [
+                  "Overfull"
+                  "Underfull"
+                ];
+              };
             };
           };
         };
@@ -82,31 +86,29 @@
               }
             '';
             cbfmt.enable = true; # code blocks in Markdown
+            # nixpkgs_fmt.enable = true; # Formatter for nixpkgs
             prettier.enable = true;
             prettier.withArgs = ''
               {
-                extra_filetypes = { "toml" },
+                extra_filetypes = { "svelte" },
                 extra_args = { "--no-semi", "--single-quote" },
               }
             '';
             shfmt.enable = true; # shell scripts
             stylua.enable = true; # Lua
-            # nixpkgs_fmt.enable = true;
+            taplo.enable = true; # TOML
           };
         };
       };
-
     };
 
     maps = {
       normal = {
-        # Async LSP Finder
         "<leader>gh" = {
           action = ":Lspsaga lsp_finder<CR>";
           silent = true;
           desc = "LSP finder";
         };
-        # Code Action
         "<leader>la" = {
           action = ":Lspsaga code_action<CR>";
           silent = true;
@@ -136,5 +138,13 @@
         };
       };
     };
+
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = "tex";
+        command = ''lua vim.keymap.set('n', '<c-f>', '<cmd>TexlabForward<cr>', { silent = true, desc = 'Forward search' })'';
+      }
+    ];
   };
 }
