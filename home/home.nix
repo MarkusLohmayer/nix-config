@@ -1,6 +1,9 @@
-{ config, pkgs, lib, ... }:
-
 {
+  stdenv,
+  pkgs,
+  lib,
+  ...
+}: {
   # https://rycee.gitlab.io/home-manager/options.html
 
   home = {
@@ -28,47 +31,43 @@
 
   # home.shellAliases."f" = "vifm";
 
-
   home.shellAliases."audio-dl" = "youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0";
 
-  # TODO how to use hostname in variable? (want "$HOME/${host}-scripts")
   home.sessionPath = [
     "$HOME/scripts"
   ];
 
+  home.packages = with pkgs;
+    [
+      # ls -G (colors) not working (but no problem since using exa instead)
+      coreutils
 
-  home.packages = with pkgs; [
+      curl
+      wget
+      tree
 
-    # ls -G (colors) not working (but no problem since using exa instead)
-    coreutils
+      ncdu
 
-    curl
-    wget
-    tree
+      comma
 
-    ncdu
+      # vifm
 
-    comma
+      # helix
 
-    # vifm
+      pandoc
 
-    # helix
+      ffmpeg
 
-    pandoc
+      # youtube-dl
 
-    ffmpeg
-
-    # youtube-dl
-
-    # TODO: Unknown option UseKeychain
-    # https://github.com/NixOS/nixpkgs/issues/62353
-    # mosh
-
-  ] ++ lib.optionals stdenv.isDarwin [
-    # useful macOS CLI commands
-    m-cli
-    # select default applications for document types and URL schemes
-    duti
-  ];
-
+      # TODO: Unknown option UseKeychain
+      # https://github.com/NixOS/nixpkgs/issues/62353
+      # mosh
+    ]
+    ++ lib.optionals stdenv.isDarwin [
+      # useful macOS CLI commands
+      m-cli
+      # select default applications for document types and URL schemes
+      duti
+    ];
 }

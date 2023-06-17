@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
-
 {
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -13,9 +14,11 @@
   services.openssh = {
     enable = true;
     settings = {
-      permitRootLogin = "yes";
+      PermitRootLogin = "no";
     };
   };
+
+  programs.ssh.startAgent = true;
 
   time.timeZone = "Europe/Berlin";
 
@@ -26,7 +29,7 @@
     users = {
       markus = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = ["wheel"];
       };
     };
   };
@@ -40,8 +43,6 @@
   ];
 
   system = {
-    # copySystemConfiguration = true;
     stateVersion = "23.05";
   };
-
 }
