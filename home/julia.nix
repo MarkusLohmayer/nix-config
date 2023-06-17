@@ -9,10 +9,14 @@
     import Pkg
 
     let
-        pkgs = ["LanguageServer", "OhMyREPL", "Revise"]
+        pkgs = ["LanguageServer", "OhMyREPL", "Revise", "VimBindings"]
         for pkg in pkgs
           Base.find_package(pkg) === nothing && Pkg.add(pkg)
         end
+    end
+
+    if isinteractive()
+        @eval using VimBindings
     end
 
     using Revise
