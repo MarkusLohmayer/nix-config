@@ -12,7 +12,9 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "yes";
+    settings = {
+      permitRootLogin = "yes";
+    };
   };
 
   time.timeZone = "Europe/Berlin";
@@ -39,7 +41,7 @@
 
   system = {
     # copySystemConfiguration = true;
-    stateVersion = "22.05";
+    stateVersion = "23.05";
   };
 
 }

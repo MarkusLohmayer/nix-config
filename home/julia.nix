@@ -1,6 +1,10 @@
 { config, pkgs, libs, ...}:
 {
 
+  home.packages = with pkgs; [
+    julia-bin
+  ];
+
   home.file.".julia/config/startup.jl".text = ''
     import Pkg
 

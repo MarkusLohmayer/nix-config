@@ -1,11 +1,7 @@
 # NixOS setup as a UTM virtual machine
 
-```
-brew install utm
-```
-
-Download NixOS 22.04 for `aarch64` CPUs:
-https://hydra.nixos.org/job/nixos/release-22.05-aarch64/nixos.iso_minimal.aarch64-linux
+Download NixOS 23.05 for `aarch64` CPUs:
+https://channels.nixos.org/nixos-23.05/latest-nixos-minimal-aarch64-linux.iso
 
 - "Create a New Virtual Machine."
 - "Virtualize"
@@ -14,12 +10,14 @@ https://hydra.nixos.org/job/nixos/release-22.05-aarch64/nixos.iso_minimal.aarch6
 - follow the remaining steps
 - start the machine
 
-```
+
+```bash
 passwd
 ip a
 ```
 
-```
+
+```bash
 ssh nixos@192.168.64.2
 
 sudo -i

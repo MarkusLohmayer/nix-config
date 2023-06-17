@@ -24,9 +24,11 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim.url = github:pta2002/nixvim;
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, nix-index-database, ... }:
+  outputs = { self, nixpkgs, darwin, home-manager, nix-index-database, nixvim, ... }:
     let
 
       inherit (nixpkgs.lib)
@@ -100,11 +102,16 @@
         };
         "markus@nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          extraSpecialArgs = {
+            inherit nixvim;
+          };
           modules = [
+            nix-index-database.hmModules.nix-index
             ./home/home-nixos.nix
 
             ./home/git.nix
-            ./home/neovim.nix
+            ./home/julia.nix
+            ./home/nixvim.nix
             ./home/ssh.nix
             ./home/tmux.nix
             ./home/zsh.nix
