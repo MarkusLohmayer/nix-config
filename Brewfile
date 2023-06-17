@@ -5,6 +5,8 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 brew "mosh"
+brew "trash"
+brew "youtube-dl"
 
 # fix issue 'tput: unknown terminal "tmux-256color"'
 brew "ncurses"
@@ -15,6 +17,7 @@ brew "ncurses"
 # brew "julia"
 
 cask "amethyst"
+cask "balenaetcher"
 cask "bitwarden"
 cask "firefox"
 cask "gimp"
@@ -28,5 +31,6 @@ cask "omnigraffle"
 cask "signal"
 cask "skim"
 cask "tor-browser"
+cask "utm"
 cask "visual-studio-code"
 cask "zoom"
