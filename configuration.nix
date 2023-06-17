@@ -33,7 +33,6 @@
 
   environment.systemPath = [
     "/opt/homebrew/bin"
-    "/usr/local/zfs/bin"
   ];
 
   # environment.variables = rec {

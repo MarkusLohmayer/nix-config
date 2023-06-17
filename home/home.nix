@@ -26,7 +26,7 @@
     nix-direnv.enable = true;
   };
 
-  home.shellAliases."f" = "vifm";
+  # home.shellAliases."f" = "vifm";
 
 
   home.shellAliases."audio-dl" = "youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0";
@@ -39,8 +39,8 @@
 
   home.packages = with pkgs; [
 
-    # ls -G (colors) not working (but now using exa)
-    # coreutils
+    # ls -G (colors) not working (but no problem since using exa instead)
+    coreutils
 
     curl
     wget
@@ -48,20 +48,17 @@
 
     ncdu
 
-    # nodejs
-    # nodePackages.typescript
-
     comma
 
-    vifm
+    # vifm
 
-    helix
+    # helix
 
     pandoc
 
     ffmpeg
 
-    youtube-dl
+    # youtube-dl
 
     # TODO: Unknown option UseKeychain
     # https://github.com/NixOS/nixpkgs/issues/62353
