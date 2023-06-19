@@ -10,10 +10,9 @@
         command = ''lua vim.cmd "tabdo wincmd ="'';
       }
       {
-        event = "BufWrite";
+        event = "BufWritePre";
         command = "%s/\\s\\+$//e"; # remove trailing whitespace
       }
-
 
       {
         event = "FileType";
@@ -29,11 +28,6 @@
         event = "FileType";
         pattern = "markdown";
         command = "setlocal wrap";
-      }
-
-      {
-        event = ["BufWritePre"];
-        command = "lua vim.lsp.buf.format()";
       }
     ];
   };

@@ -30,7 +30,14 @@
               # };
               forwardSearch = {
                 executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
-                args = ["-r" "-g" "-b" "%l" "%p" "%f"];
+                args = [
+                  "-r" # reload
+                  "-g" # don't move focus to Skim
+                  # "-b" # reading bar
+                  "%l" # line number
+                  "%p" # PDF file
+                  "%f" # TeX file
+                ];
               };
               # forwardSearch = {
               #   executable = "zathura";
@@ -145,6 +152,10 @@
         pattern = "tex";
         command = ''lua vim.keymap.set('n', '<c-f>', '<cmd>TexlabForward<cr>', { silent = true, desc = 'Forward search' })'';
       }
+      # {
+      #   event = ["BufWritePre"];
+      #   command = "lua vim.lsp.buf.format()";
+      # }
     ];
   };
 }

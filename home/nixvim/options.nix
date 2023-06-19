@@ -39,6 +39,8 @@
 
       spell = true;
       spelllang = "en_us,de";
+      # add / remove to / from second spell file with 2zg / 2zug
+      spellfile = ["en.utf-8.add" "de.utf-8.add"];
 
       termguicolors = true;
 
@@ -53,7 +55,7 @@
       cmdheight = 1;
       laststatus = 3;
 
-      completeopt = [ "menuone" "noselect" ];
+      completeopt = ["menuone" "noselect"];
       pumheight = 10;
       # shortmess:append "c"
       # iskeyword:append "-"
