@@ -39,8 +39,6 @@
 
       spell = true;
       spelllang = "en_us,de";
-      # add / remove to / from second spell file with 2zg / 2zug
-      spellfile = ["en.utf-8.add" "de.utf-8.add"];
 
       termguicolors = true;
 
@@ -63,6 +61,7 @@
       # markdown_folding = true;
     };
     globals = {
+      # disable support for plugins written in
       loaded_ruby_provider = 0;
       loaded_perl_provider = 0;
       loaded_python_provider = 0;
