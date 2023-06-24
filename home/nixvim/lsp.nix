@@ -21,7 +21,7 @@
                 executable = "latexmk";
                 args = ["-pdflatex" "-interaction=nonstopmode" "-synctex=1" "%f"];
                 onSave = true;
-                # forwardSearchAfter = true;
+                forwardSearchAfter = true;
               };
               # for debugging:
               # forwardSearch = {
