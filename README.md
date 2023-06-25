@@ -3,10 +3,7 @@
 Nix flake containing
 - [nix-darwin](https://github.com/LnL7/nix-darwin) system configuration
 - [home-manager](https://github.com/nix-community/home-manager) user configuration
-- [Neovim](https://github.com/neovim/neovim) configuration
-
-Currently, the Neovim configuration is included via
-an [out-of-store symlink](https://github.com/nix-community/home-manager/commit/91551c09d48583230b36cf759ad703b5f1d83d9a).
+- [Neovim](https://github.com/neovim/neovim) configuration via [NixVim](https://github.com/pta2002/nixvim)
 
 
 ## Nix
