@@ -22,7 +22,7 @@
         indent = true;
       };
 
-      treesitter-rainbow.enable = true;
+      rainbow-delimiters.enable = true;
     };
   };
 }

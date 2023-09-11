@@ -38,7 +38,7 @@
 
   home.packages = with pkgs;
     [
-      # ls -G (colors) not working (but no problem since using exa instead)
+      # ls -G (colors) not working (but no problem since using eza instead)
       coreutils
 
       curl

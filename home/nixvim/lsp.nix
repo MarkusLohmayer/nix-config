@@ -63,13 +63,6 @@
 
       lspsaga = {
         enable = true;
-        icons.codeAction = "";
-        signs = {
-          error = "";
-          hint = "";
-          info = "";
-          warning = "";
-        };
       };
 
       null-ls = {

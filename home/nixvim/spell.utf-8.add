@@ -1,4 +1,5 @@
 1
+3D
 Abelian
 acausal
 accessor
@@ -12,6 +13,7 @@ advected
 advection
 advects
 agroforestry
+Agroforstsystem
 antisymmetric
 arity
 Arjan
@@ -35,6 +37,7 @@ bifunctor
 bijection
 bijections
 bilinear
+biomechanics
 bivector
 braidings
 Braun
@@ -42,6 +45,7 @@ Bruijn
 Bursztyn
 CAE
 Califano
+Capobianco
 Cartan
 Cartan's
 cartesian
@@ -67,6 +71,7 @@ composable
 compositional
 compositional
 compositionality
+compressibility
 config
 consitutive
 contravariant
@@ -86,6 +91,7 @@ DAEs
 dataset
 datasets
 de
+decompositions
 degeneracies
 degeracies
 der
@@ -102,6 +108,7 @@ discretizing
 dissipative
 dissipativity
 Dorfen
+dually
 Eidgenössische
 eigenspace
 eigenspaces
@@ -113,6 +120,7 @@ epimorphisms
 Erlangen
 Euclidian
 Eulerian
+exemplarily
 exergetic
 exergy
 extensibility
@@ -151,6 +159,7 @@ HTML
 hypergraph
 hyperparameter
 i3
+incompressibility
 incompressible
 inductor
 inductors
@@ -316,6 +325,7 @@ RHS
 Riemannian
 Runge
 Sackur
+scalability
 scalable
 Schaft
 schemas
@@ -333,6 +343,7 @@ stator
 Stramigioli
 Störmer
 subalgebra
+subalgebras
 subbundle
 subcateogry
 subfolder
@@ -346,6 +357,7 @@ subobject
 subspaces
 subtypes
 SVG
+swale
 symlink
 symmetrized
 symmetrizes
@@ -387,6 +399,7 @@ UWDs
 variational
 Verlet
 VPN
+Wassergrand
 WebSocket
 Weinstein
 whitespace
