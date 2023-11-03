@@ -32,54 +32,55 @@
         };
       };
     };
-
-    maps.normal = {
-
-      "<S-h>" = {
+    keymaps = [
+      {
+        options.desc = "previous buffer";
+        key = "<S-h>";
         action = "<cmd>BufferPrevious<cr>";
-        silent = true;
-        desc = "previous buffer";
-      };
-      "<S-l>" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "next buffer";
+        key = "<S-l>";
         action = "<cmd>BufferNext<cr>";
-        silent = true;
-        desc = "next buffer";
-      };
-      "<S-q>" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "close buffer";
+        key = "<S-q>";
         action = "<cmd>BufferClose<cr>";
-        silent = true;
-        desc = "close buffer";
-      };
-
-
-      "<leader>b" = {
-        desc = "buffer";
-      };
-      "<leader>bp" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "pin buffer";
+        key = "<leader>bp";
         action = "<cmd>BufferPin<cr>";
-        silent = true;
-        desc = "pin buffer";
-      };
-      "<leader>br" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "restore buffer";
+        key = "<leader>br";
         action = "<cmd>BufferRestore<cr>";
-        silent = true;
-        desc = "restore buffer";
-      };
-      "<leader>bc" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "close all buffers except current";
+        key = "<leader>bc";
         action = "<cmd>BufferCloseAllButCurrent<cr>";
-        silent = true;
-        desc = "close all buffers except current";
-      };
-      "<leader>bC" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "close all buffers";
+        key = "<leader>bC";
         action = "<cmd>BufferWipeout<cr>";
-        silent = true;
-        desc = "close all buffers";
-      };
-      "<leader>bd" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "pick buffer to close";
+        key = "<leader>bd";
         action = "<cmd>BufferPickDelete<cr>";
-        silent = true;
-        desc = "pick buffer to close";
-      };
-    };
+        options.silent = true;
+      }
+    ];
   };
 }

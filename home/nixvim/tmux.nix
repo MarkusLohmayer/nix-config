@@ -22,42 +22,44 @@ in
         target_pane = string.format("{last}", slimux.get_tmux_window()),
       }
     '';
-    maps = {
-      normal = {
-        "<A-h>" = {
-          action = "<cmd>NavigatorLeft<cr>";
-          silent = true;
-          desc = "Move left";
-        };
-        "<A-j>" = {
-          action = "<cmd>NavigatorDown<cr>";
-          silent = true;
-          desc = "Move down";
-        };
-        "<A-k>" = {
-          action = "<cmd>NavigatorUp<cr>";
-          silent = true;
-          desc = "Move up";
-        };
-        "<A-l>" = {
-          action = "<cmd>NavigatorRight<cr>";
-          silent = true;
-          desc = "Move right";
-        };
-
-        "<leader>r" = {
-          action = '':lua require("slimux").send_highlighted_text()<CR>'';
-          silent = true;
-          desc = "Send to tmux pane";
-        };
-      };
-      visual = {
-        "<leader>r" = {
-          action = '':lua require("slimux").send_paragraph_text()<CR>'';
-          silent = true;
-          desc = "Send to tmux pane";
-        };
-      };
-    };
+    keymaps = [
+      {
+        options.desc = "move left";
+        key = "<A-h>";
+        action = "<cmd>NavigatorLeft<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "move down";
+        key = "<A-j>";
+        action = "<cmd>NavigatorDown<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "move up";
+        key = "<A-k>";
+        action = "<cmd>NavigatorUp<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "move right";
+        key = "<A-l>";
+        action = "<cmd>NavigatorRight<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "send to tmux pane";
+        key = "<leader>r";
+        action = '':lua require("slimux").send_paragraph_text()<cr>'';
+        options.silent = true;
+      }
+      {
+        options.desc = "send to tmux pane";
+        mode = "v";
+        key = "<leader>r";
+        action = '':lua require("slimux").send_highlighted_text()<cr>'';
+        options.silent = true;
+      }
+    ];
   };
 }

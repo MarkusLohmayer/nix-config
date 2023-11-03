@@ -1,18 +1,13 @@
-{
-  pkgs,
-  # helpers,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./autocmd.nix
     ./barbar.nix
     ./cmp.nix
+    ./colorscheme.nix
     ./comment.nix
     ./gitsigns.nix
-    ./colorscheme.nix
     ./indentline.nix
     ./keymaps.nix
-    ./leap.nix
     ./lsp.nix
     ./lualine.nix
     ./options.nix
@@ -20,7 +15,6 @@
     ./sort.nix
     ./telescope.nix
     ./tmux.nix
-    ./toggleterm.nix
     ./tree.nix
     ./treesitter.nix
     ./which-key.nix
@@ -29,7 +23,7 @@
     luaLoader.enable = true;
 
     plugins = {
-      # nvim-colorizer.enable = true;
+      leap.enable = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
       mkdir-nvim

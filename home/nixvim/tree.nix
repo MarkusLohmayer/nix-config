@@ -8,10 +8,13 @@
         autoExpandWidth = true;
       };
     };
-    maps.normal."<leader>e" = {
-      action = ":Neotree action=focus reveal toggle<CR>";
-      silent = true;
-      desc = "file tree";
-    };
+    keymaps = [
+      {
+        options.desc = "file tree";
+        key = "<leader>e";
+        action = ":Neotree action=focus reveal toggle<cr>";
+        options.silent = true;
+      }
+    ];
   };
 }

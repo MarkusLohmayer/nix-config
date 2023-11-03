@@ -6,6 +6,8 @@
         servers = {
           bashls.enable = true;
 
+          hls.enable = true;
+
           julials.enable = true; # must be installed from Julia
 
           # ltex.enable = true;
@@ -65,7 +67,7 @@
         enable = true;
       };
 
-      null-ls = {
+      none-ls = {
         enable = true;
         # cmd = ["bash -c nvim"];
         # debug = true;
@@ -102,42 +104,74 @@
       };
     };
 
-    maps = {
-      normal = {
-        "<leader>gh" = {
-          action = ":Lspsaga lsp_finder<CR>";
-          silent = true;
-          desc = "LSP finder";
-        };
-        "<leader>la" = {
-          action = ":Lspsaga code_action<CR>";
-          silent = true;
-          desc = "Code action";
-        };
-        "<leader>lr" = {
-          action = ":Lspsaga rename<CR>";
-          silent = true;
-          desc = "Rename";
-        };
-        "<leader>gd" = {
-          action = ":Lspsaga preview_definition<CR>";
-          silent = true;
-          desc = "view definitions";
-        };
-        "<leader>lf" = {
-          action = ":lua vim.lsp.buf.format()<CR>";
-          silent = true;
-          desc = "Format code";
-        };
-      };
-      visual = {
-        "<leader>la" = {
-          silent = true;
-          action = ":<C-U>Lspsaga range_code_action<CR>";
-          desc = "Code action";
-        };
-      };
-    };
+    keymaps = [
+      {
+        options.desc = "LSP finder";
+        key = "<leader>lf";
+        action = ":Lspsaga finder<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP code action";
+        key = "<leader>la";
+        action = ":Lspsaga code_action<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP rename";
+        key = "<leader>lr";
+        action = ":Lspsaga rename<CR>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP peek definition";
+        key = "<leader>ld";
+        action = ":Lspsaga peek_definition<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP goto definition";
+        key = "<leader>lD";
+        action = ":Lspsaga goto_definition<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP peek type definition";
+        key = "<leader>lt";
+        action = ":Lspsaga peek_type_definition<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP goto type definition";
+        key = "<leader>lT";
+        action = ":Lspsaga goto_type_definition<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP format code";
+        key = "<leader>lf";
+        action = ":lua vim.lsp.buf.format()<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP next diagnostic";
+        key = "<leader>ln";
+        action = ":Lspsaga diagnostic_jump_next<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP previous diagnostic";
+        key = "<leader>lN";
+        action = ":Lspsaga diagnostic_jump_prev<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "LSP hover documentation";
+        key = "<leader>lh";
+        action = ":Lspsaga hover_doc<cr>";
+        options.silent = true;
+      }
+    ];
 
     autoCmd = [
       {

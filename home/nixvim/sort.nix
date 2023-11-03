@@ -16,31 +16,21 @@
         },
       }
     '';
-    maps = {
-      normal = {
-        "gs" = {
-          action = "<cmd>Sort i<cr>";
-          silent = true;
-          desc = "sort (c.i.)";
-        };
-        "gS" = {
-          action = "<cmd>Sort<cr>";
-          silent = true;
-          desc = "sort (c.s.)";
-        };
-      };
-      visual = {
-        "gs" = {
-          action = "<esc><cmd>Sort i<cr>";
-          silent = true;
-          desc = "sort (c.i.)";
-        };
-        "gS" = {
-          action = "<esc><cmd>Sort<cr>";
-          silent = true;
-          desc = "sort (c.s.)";
-        };
-      };
-    };
+    keymaps = [
+      {
+        options.desc = "sort (c.i.)";
+        mode = ["n" "v"];
+        key = "gs";
+        action = "<esc><cmd>Sort i<cr>";
+        options.silent = true;
+      }
+      {
+        options.desc = "sort (c.s.)";
+        mode = ["n" "v"];
+        key = "gS";
+        action = "<esc><cmd>Sort<cr>";
+        options.silent = true;
+      }
+    ];
   };
 }

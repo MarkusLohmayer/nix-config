@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     texlive.combined.scheme-full
 
+    ghostscript
+
     pympress
   ];
 

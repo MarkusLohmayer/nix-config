@@ -7,9 +7,6 @@
     extraConfig = {
       github.user = "MarkusLohmayer";
 
-      # set global gitignore file:
-      # core.excludesfile = "~/.gitignore_global";
-
       core.autocrlf = false;
       core.eol = "lf";
 
@@ -28,26 +25,9 @@
     delta = {
       enable = true;
       options = {
-        features = "decorations unobtrusive-line-numbers";
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          commit-style = "raw";
-          file-style = "bold yellow ul";
-          file-decoration-style = "none";
-          hunk-header-style = "file line-number syntax";
-          hunk-header-decoration-style = "blue box";
-          hunk-header-file-style = "red";
-          hunk-header-line-number-style = "#067a00";
-        };
-        unobtrusive-line-numbers = {
-          line-numbers = true;
-          line-numbers-minus-style = "red";
-          line-numbers-plus-style = "green";
-          line-numbers-left-format = "{nm:>4}┊";
-          line-numbers-right-format = "{np:>4}┊";
-          line-numbers-left-style = "red";
-          line-numbers-right-style = "green";
-        };
+        features = "decorations line-numbers";
+        navigate = true; # support n and N
+        side-by-side = true;
       };
     };
     ignores = [
@@ -188,4 +168,17 @@
       git_protocol = "ssh";
     };
   };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.theme = {
+        lightTheme = false;
+        activeBorderColor = [ "white" "bold" ];
+        inactiveBorderColor = [ "white" ];
+        selectedLineBgColor = [ "reverse" "white" ];
+      };
+    };
+  };
+  home.shellAliases."lg" = "lazygit";
 }

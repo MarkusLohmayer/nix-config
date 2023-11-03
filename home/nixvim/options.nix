@@ -59,6 +59,8 @@
       # iskeyword:append "-"
 
       # markdown_folding = true;
+
+      wildmode = "longest,full";
     };
     globals = {
       # disable support for plugins written in

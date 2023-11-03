@@ -1,5 +1,5 @@
-# https://github.com/pta2002/nixvim
-# https://pta2002.github.io/nixvim/
+# https://github.com/nix-community/nixvim
+# https://nix-community.github.io/nixvim/
 {
   config,
   pkgs,
@@ -15,11 +15,6 @@
         };
       }
     )
-
-    # modern replacement for `find`
-    fd
-    # modern replacement for `grep`
-    ripgrep
   ];
 
   home.sessionVariables."EDITOR" = "nvim";

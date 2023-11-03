@@ -1,54 +1,74 @@
-{helpers, ...}: {
+{...}: {
   config = {
     globals.mapleader = " ";
-    maps = helpers.mkMaps {silent = true;} {
-
-      # "<leader>f" = {
-      #   desc = " Files";
-      # };
-      # "<leader>g" = {
-      #   desc = " Git";
-      # };
-      # "<leader>l" = {
-      #   desc = " LSP";
-      # };
-
-      normal."<leader>w" = {
+    keymaps = [
+      {
+        options.desc = "write";
+        key = "<leader>w";
         action = "<cmd>write<cr>";
-        desc = "write";
-      };
-      normal."<leader>q" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "quit";
+        key = "<leader>q";
         action = "<cmd>quit<cr>";
-        desc = "quit";
-      };
-      normal."<leader>Q" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "force quit";
+        key = "<leader>Q";
         action = "<cmd>quit!<cr>";
-        desc = "force quit";
-      };
-
-      normal."x" = {
+        options.silent = true;
+      }
+      {
+        # delete (without yank)
+        mode = ["n" "v"];
+        key = "x";
         action = "\"_x";
-      };
-      visual."x" = {
-        action = "\"_x";
-      };
-      visual."p" = {
+        options.silent = true;
+      }
+      {
+        # paste (without yank)
+        mode = "v";
+        key = "p";
         action = "\"_dP";
-      };
-
-      insert."<C-l>" = {
+        options.silent = true;
+      }
+      {
+        options.desc = "fix last typo";
+        mode = "i";
+        key = "<C-l>";
         action = "<c-g>u<Esc>[s1z=`]a<c-g>u";
-        desc = "fix last typo";
-      };
-
-      # indent and stay in visual mode
-      visual."<" = "<gv";
-      visual.">" = ">gv";
-
-      # move selection
-      visual."K" = ":m '<-2<CR>gv=gv";
-      visual."J" = ":m '>+1<CR>gv=gv";
-
-    };
+        options.silent = true;
+      }
+      {
+        # indent and stay in visual mode
+        mode = "v";
+        key = "<";
+        action = "<gv";
+        options.silent = true;
+      }
+      {
+        # indent and stay in visual mode
+        mode = "v";
+        key = ">";
+        action = ">gv";
+        options.silent = true;
+      }
+      {
+        # indent and stay in visual mode
+        mode = "v";
+        key = "K";
+        action = ":m '<-2<CR>gv=gv";
+        options.silent = true;
+      }
+      {
+        # indent and stay in visual mode
+        mode = "v";
+        key = "J";
+        action = ":m '>+1<CR>gv=gv";
+        options.silent = true;
+      }
+    ];
   };
 }

@@ -19,10 +19,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim.url = "github:pta2002/nixvim";
+    nixvim = {
+      url = "github:pta2002/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
+    self,
     nixpkgs,
     darwin,
     home-manager,
@@ -31,17 +35,10 @@
     ...
   }: {
     darwinConfigurations = {
-      ltd-staff12 = darwin.lib.darwinSystem {
-        system = "x86_64-darwin";
-        modules = [
-          ./configuration.nix
-        ];
-      };
-
       m-one = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./configuration.nix
+          ./m-one/configuration.nix
         ];
       };
     };
@@ -57,20 +54,29 @@
 
     homeConfigurations = {
       "markus@m-one" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+          overlays = [
+            self.overlay
+          ];
+        };
         extraSpecialArgs = {
           inherit nixvim;
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./home/home.nix
+          ./m-one/home.nix
 
           ./home/git.nix
           ./home/julia.nix
           ./home/latex.nix
           ./home/nixvim.nix
+          ./home/nushell.nix
           ./home/ssh.nix
+          ./home/starhip.nix
+          ./home/terminal.nix
           ./home/tmux.nix
+          ./home/vscode.nix
           ./home/zsh.nix
 
           ./home/kitty.nix
@@ -79,23 +85,35 @@
       };
 
       "markus@nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          overlays = [
+            self.overlay
+          ];
+        };
         extraSpecialArgs = {
           inherit nixvim;
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./home/home-nixos.nix
+          ./nixos/home.nix
 
           ./home/git.nix
           ./home/julia.nix
-          # ./home/latex.nix
           ./home/nixvim.nix
           ./home/ssh.nix
+          ./home/starhip.nix
+          ./home/terminal.nix
           ./home/tmux.nix
           ./home/zsh.nix
         ];
       };
+    };
+
+    overlay = final: prev: let
+      tilish = prev.callPackage ./overlay/tilish.nix {};
+    in {
+      tmuxPlugins = prev.tmuxPlugins // {inherit tilish;};
     };
   };
 }
