@@ -7,7 +7,7 @@
     import Pkg
 
     let
-        pkgs = ["LanguageServer", "OhMyREPL", "Revise", "VimBindings"]
+        pkgs = ["LanguageServer", "OhMyREPL", "Pluto", "Revise", "VimBindings"]
         for pkg in pkgs
           Base.find_package(pkg) === nothing && Pkg.add(pkg)
         end

@@ -111,9 +111,9 @@
     };
 
     overlay = final: prev: let
-      tilish = prev.callPackage ./overlay/tilish.nix {};
+      # tilish = prev.callPackage ./overlay/tilish.nix {};
     in {
-      tmuxPlugins = prev.tmuxPlugins // {inherit tilish;};
+      # tmuxPlugins = prev.tmuxPlugins // {inherit tilish;};
     };
   };
 }
