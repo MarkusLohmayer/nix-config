@@ -1,5 +1,5 @@
 {
-  description = "Nix system and home configuration of Markus Lohmayer";
+  description = "Nix system and home configurations of Markus Lohmayer";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -38,16 +38,22 @@
       m-one = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./m-one/configuration.nix
+          ./machines/m-one/configuration.nix
         ];
       };
     };
 
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      pi = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./nixos/configuration.nix
+          ./machines/pi/configuration.nix
+        ];
+      };
+      nixos-vm = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          ./machines/nixos-vm/configuration.nix
         ];
       };
     };
@@ -65,7 +71,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./m-one/home.nix
+          ./machines/m-one/home.nix
 
           ./home/git.nix
           ./home/julia.nix
@@ -76,15 +82,15 @@
           ./home/starhip.nix
           ./home/terminal.nix
           ./home/tmux.nix
-          ./home/vscode.nix
           ./home/zsh.nix
 
           ./home/kitty.nix
+          ./home/vscode.nix
           ./home/zathura.nix
         ];
       };
 
-      "markus@nixos" = home-manager.lib.homeManagerConfiguration {
+      "markus@pi" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-linux";
           overlays = [
@@ -96,7 +102,31 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./nixos/home.nix
+          ./machines/pi/home.nix
+
+          ./home/git.nix
+          ./home/nixvim.nix
+          ./home/ssh.nix
+          ./home/starhip.nix
+          ./home/terminal.nix
+          ./home/tmux.nix
+          ./home/zsh.nix
+        ];
+      };
+
+      "markus@nixos-vm" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "aarch64-linux";
+          overlays = [
+            self.overlay
+          ];
+        };
+        extraSpecialArgs = {
+          inherit nixvim;
+        };
+        modules = [
+          nix-index-database.hmModules.nix-index
+          ./machines/nixos-vm/home.nix
 
           ./home/git.nix
           ./home/julia.nix

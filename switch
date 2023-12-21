@@ -4,32 +4,44 @@
 set +x
 set -e
 
-darwin() {
-  nix --experimental-features 'nix-command flakes' build .#darwinConfigurations.$(hostname -s).system
+m_one() {
+  nix --experimental-features 'nix-command flakes' build .#darwinConfigurations.m-one.system
   sudo -H ./result/sw/bin/darwin-rebuild switch --flake .
 }
 
-m_one_home() {
+m_one_markus() {
   home-manager switch --flake .#markus@m-one
 }
 
-nixos() {
-  sudo nixos-rebuild switch --impure --flake .#
+pi() {
+  sudo nixos-rebuild switch --impure --flake .#pi
 }
 
-nixos_home() {
-  home-manager switch --flake .#markus@nixos
+pi_markus() {
+  home-manager switch --flake .#markus@pi
+}
+
+nixos_vm() {
+  sudo nixos-rebuild switch --impure --flake .#nixos-vm
+}
+
+nixos_vm_markus() {
+  home-manager switch --flake .#markus@nixos-vm
 }
 
 case $1 in
-  "darwin")
-    darwin;;
-  "m_one_home")
-    m_one_home;;
-  "nixos")
-    nixos;;
-  "nixos_home")
-    nixos_home;;
+  "m_one")
+    m_one;;
+  "m_one_markus")
+    m_one_markus;;
+  "pi")
+    pi;;
+  "pi_markus")
+    pi_markus;;
+  "nixos_vm")
+    nixos_vm;;
+  "nixos_vm_markus")
+    nixos_vm_markus;;
   *)
-    echo "expected either of 'darwin', 'm_one_home', 'nixos', 'nixos_home'";;
+    echo "expected either of 'm_one', 'm_one_markus', 'pi', 'pi_markus', 'nixos_vm', 'nixos_vm_markus'";;
 esac

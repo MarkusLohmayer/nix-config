@@ -1,10 +1,4 @@
-# nix-config
-
-Nix flake containing
-- [nix-darwin](https://github.com/LnL7/nix-darwin) system configuration
-- [home-manager](https://github.com/nix-community/home-manager) user configuration
-- [Neovim](https://github.com/neovim/neovim) configuration via [NixVim](https://github.com/nix-community/nixvim)
-
+# m-one
 
 ## Nix
 

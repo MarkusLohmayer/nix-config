@@ -1,4 +1,6 @@
-# NixOS setup as a UTM virtual machine
+# nixos-vm
+
+NixOS on a virtual machine based on UTM
 
 Download NixOS 23.05 for `aarch64` CPUs:
 https://channels.nixos.org/nixos-23.05/latest-nixos-minimal-aarch64-linux.iso
@@ -49,11 +51,11 @@ mount /dev/disk/by-label/boot /mnt/boot
 
 # configure NixOS according to flake in local directory
 nix-shell -p nixUnstable git
-nixos-install --impure --flake '.#nixos'
+nixos-install --impure --flake '.#nixos-vm'
 
 # configure NixOS according to flake from GitHub
 nix-shell -p nixUnstable git
-nixos-install --flake https://github.com/MarkusLohmayer/nix-config#nixos
+nixos-install --flake https://github.com/MarkusLohmayer/nix-config#nixos-vm
 
 shutdown -h now
 ```
