@@ -6,11 +6,11 @@
         servers = {
           bashls.enable = true;
 
+          clangd.enable = true;
+
           hls.enable = true;
 
           julials.enable = true; # must be installed from Julia
-
-          # ltex.enable = true;
 
           lua-ls.enable = true;
 

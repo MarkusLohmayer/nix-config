@@ -4,7 +4,7 @@
 
 Installation:
 
-```
+```bash
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
@@ -16,8 +16,8 @@ Documentation:
 
 Activation:
 
-```
-./switch darwin
+```bash
+./switch m_one
 ```
 
 Documentation:
@@ -28,8 +28,8 @@ Documentation:
 
 Activation:
 
-```
-./switch m_one_home
+```bash
+./switch m_one_markus
 ```
 
 Documentation:
@@ -38,7 +38,7 @@ Documentation:
 
 ## Update flake lock file
 
-```
+```bash
 nix flake update
 ```
 
@@ -47,7 +47,7 @@ nix flake update
 
 ### Add SSH key
 
-```
+```bash
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 ```
@@ -56,26 +56,26 @@ ssh-add --apple-use-keychain ~/.ssh/id_rsa
 
 Installation:
 
-```
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Install packages according to Brewfile:
 
-```
+```bash
 brew bundle  --no-upgrade --cleanup
 ```
 
 Install and upgrade all dependencies from the Brewfile:
 
-```
+```bash
 brew bundle --cleanup
 ```
 
 
 ### Install keyboard layout (used with Kyria keyboard)
 
-```
+```bash
 curl -O https://raw.githubusercontent.com/xv0x7c0/osx-us-altgr-intl/master/us-altgr-intl.keylayout
 sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
 ```
@@ -83,6 +83,6 @@ sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
 
 ### Install Apple Rosetta (x86 emulation on arm64)
 
-```
+```bash
 softwareupdate --install-rosetta
 ```

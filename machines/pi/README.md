@@ -16,10 +16,14 @@ Installation:
 ```bash
 sudo -i
 
-DISK1=/dev/disk/by-id/ata-VENDOR-ID-OF-THE-FIRST-DRIVE
-DISK2=/dev/disk/by-id/ata-VENDOR-ID-OF-THE-SECOND-DRIVE
+systemctl start sshd
+passwd
 
-wipefs -a /dev/sdb
+DISK1=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2325E8C44F0A-0:0
+DISK2=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2338E8C498CC-0:0
+
+wipefs -a $DISK1
+wipefs -a $DISK2
 
 parted -a optimal $DISK1 -- mklabel gpt
 parted -a optimal $DISK2 -- mklabel gpt
@@ -59,20 +63,21 @@ zpool create \
 
 zfs create -o refreservation=10G -o mountpoint=none rpool/reserved
 
-zfs create -o mountpoint=legacy rpool/root
-zfs create -o mountpoint=legacy rpool/nix
-zfs create -o mountpoint=legacy rpool/var
-zfs create -o mountpoint=legacy rpool/home
+zfs create rpool/root
+zfs create rpool/nix
+zfs create rpool/var
+zfs create rpool/home
+zfs create rpool/home/markus
 
-mkdir /mnt/root
-mount -t zfs zpool/root /mnt
+mount -t zfs -o zfsutil rpool/root /mnt
 
-mount /dev/$DISK1-part1 /mnt/boot
+mkdir /mnt/boot
+mount $DISK1-part1 /mnt/boot
 
 mkdir /mnt/nix /mnt/var /mnt/home
-mount -t zfs rpool/nix /mnt/nix
-mount -t zfs rpool/var /mnt/var
-mount -t zfs rpool/home /mnt/home
+mount -t zfs -o zfsutil rpool/nix /mnt/nix
+mount -t zfs -o zfsutil rpool/var /mnt/var
+mount -t zfs -o zfsutil rpool/home /mnt/home
 
 nix-shell -p wget unzip
 cd /mnt/boot
@@ -83,12 +88,35 @@ rm RPi4_UEFI_Firmware_v1.35.zip
 
 # configure NixOS according to flake in local directory
 nix-shell -p nixUnstable git
+nixos-generate-config --root /mnt
+cd /mnt/etc/nixos/
+git clone https://github.com/MarkusLohmayer
+# copy generated hardware-configuration.nix to machines/pi/
+# and add `options = [ "zfsutil" ]` to every ZFS filesystem
 nixos-install --impure --flake '.#pi'
 
-# configure NixOS according to flake from GitHub
-nix-shell -p nixUnstable git
-nixos-install --flake https://github.com/MarkusLohmayer/nix-config#pi
-
 shutdown -h now
+```
+
+```bash
+passwd markus
+cd /etc/nixos/
+rm configuration.nix hardware-configuration.nix
+mv nix-config /home/markus/
+```
+
+```bash
+ssh-copy-id markus@192.168.0.3
+scp ~/.ssh/id_rsa* markus@192.168.0.3:.ssh/
+```
+
+```bash
+sudo chown -R markus:users nix-config
+chmod -R go-rwx nix-config
+cd nix-config
+mkdir -p ~/.local/state/nix/profiles
+./switch pi_markus
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
 ```
 

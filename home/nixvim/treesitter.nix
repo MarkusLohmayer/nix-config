@@ -7,6 +7,7 @@
         ensureInstalled = [
           "bash"
           "c"
+          "c++"
           "haskell"
           "html"
           "julia"
