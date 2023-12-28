@@ -58,7 +58,6 @@ zpool create \
   -O dnodesize=auto \
   -O mountpoint=none \
   -O xattr=sa \
-  -O encryption=on -O keyformat=passphrase -O keylocation=prompt \
   rpool mirror $DISK1-part3 $DISK2-part3
 
 zfs create -o refreservation=10G -o mountpoint=none rpool/reserved
@@ -67,7 +66,6 @@ zfs create rpool/root
 zfs create rpool/nix
 zfs create rpool/var
 zfs create rpool/home
-zfs create rpool/home/markus
 
 mount -t zfs -o zfsutil rpool/root /mnt
 
@@ -90,7 +88,7 @@ rm RPi4_UEFI_Firmware_v1.35.zip
 nix-shell -p nixUnstable git
 nixos-generate-config --root /mnt
 cd /mnt/etc/nixos/
-git clone https://github.com/MarkusLohmayer
+git clone https://github.com/MarkusLohmayer/nix-config
 # copy generated hardware-configuration.nix to machines/pi/
 # and add `options = [ "zfsutil" ]` to every ZFS filesystem
 nixos-install --impure --flake '.#pi'
