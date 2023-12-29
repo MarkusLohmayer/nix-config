@@ -23,6 +23,11 @@
       url = "github:pta2002/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -32,6 +37,7 @@
     home-manager,
     nix-index-database,
     nixvim,
+    sops-nix,
     ...
   }: {
     darwinConfigurations = {
@@ -48,6 +54,7 @@
         system = "aarch64-linux";
         modules = [
           ./machines/pi/configuration.nix
+          sops-nix.nixosModules.sops
         ];
       };
       nixos-vm = nixpkgs.lib.nixosSystem {

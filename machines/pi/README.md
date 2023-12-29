@@ -120,3 +120,15 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ```
 
+
+```bash
+# create a private key for myself (admin)
+mkdir -p ~/.config/sops/age
+nix-shell -p age --run "age-keygen -o ~/.config/sops/age/keys.txt"
+
+# convert SSH machine key of server pi into an age key
+nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
+
+# add a secret
+nix-shell -p sops --run "sops secrets/secrets.yaml"
+```

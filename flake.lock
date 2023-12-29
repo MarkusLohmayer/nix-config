@@ -190,6 +190,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable_2": {
+      "locked": {
+        "lastModified": 1703351344,
+        "narHash": "sha256-9FEelzftkE9UaJ5nqxidaJJPEhe9TPhbypLHmc2Mysc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7790e078f8979a9fcd543f9a47427eeaba38f268",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "beautysh": "beautysh",
@@ -271,7 +287,29 @@
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim"
+        "nixvim": "nixvim",
+        "sops-nix": "sops-nix"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": "nixpkgs-stable_2"
+      },
+      "locked": {
+        "lastModified": 1703387502,
+        "narHash": "sha256-JnWuQmyanPtF8c5yAEFXVWzaIlMxA3EAZCh8XNvnVqE=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "e523e89763ff45f0a6cf15bcb1092636b1da9ed3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "systems": {

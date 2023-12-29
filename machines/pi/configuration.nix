@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }: {
@@ -11,7 +12,7 @@
 
   boot.blacklistedKernelModules = [
     "bluetooth" "btbc" "btstdio" "btusb" "hci_uart" # Bluetooth
-    "brcmfmac" "brcmutil" # WiFi
+    # "brcmfmac" "brcmutil" # WiFi
     "joydev" # Joystick
     "8021q" "bridge" "garp" "stp" "llc" "macvlan" # Networking
   ];
@@ -20,6 +21,12 @@
   networking.hostId = "d494711d";
 
   networking.hostName = "pi";
+
+  networking.wireless = {
+    enable = true;
+    environmentFile = config.sops.secrets."wifi".path;
+    networks."@ssid@".psk = "@pass@";
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
@@ -70,6 +77,14 @@
     SystemMaxUse=300M
     Storage=volatile
   '';
+
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    secrets = {
+      wifi = {};
+    };
+  };
 
   system = {
     stateVersion = "23.11";
