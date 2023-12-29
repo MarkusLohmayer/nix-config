@@ -39,7 +39,7 @@
     nixvim,
     sops-nix,
     ...
-  }: {
+  } @ inputs: {
     darwinConfigurations = {
       m-one = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
@@ -56,6 +56,7 @@
           ./machines/pi/configuration.nix
           sops-nix.nixosModules.sops
         ];
+        specialArgs = {inherit inputs;};
       };
       nixos-vm = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";

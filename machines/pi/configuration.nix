@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   ...
@@ -33,7 +34,20 @@
 
   powerManagement.cpuFreqGovernor = "powersafe";
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 60d";
+    };
+
+    # make nix shell use the same version of nixpkgs as this flake
+    registry = {nixpkgs.flake = inputs.nixpkgs;};
+  };
 
   users = {
     defaultUserShell = pkgs.zsh;
