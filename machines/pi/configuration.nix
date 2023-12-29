@@ -12,13 +12,27 @@
   boot.loader.systemd-boot.enable = true;
 
   boot.blacklistedKernelModules = [
-    "bluetooth" "btbc" "btstdio" "btusb" "hci_uart" # Bluetooth
-    # "brcmfmac" "brcmutil" # WiFi
-    "joydev" # Joystick
-    "8021q" "bridge" "garp" "stp" "llc" "macvlan" # Networking
+    # Bluetooth
+    "bluetooth"
+    "btbc"
+    "btstdio"
+    "btusb"
+    "hci_uart"
+    # WiFi
+    # "brcmfmac"
+    # "brcmutil"
+    # Joystick
+    "joydev"
+    # Networking
+    "8021q"
+    "bridge"
+    "garp"
+    "stp"
+    "llc"
+    "macvlan"
   ];
 
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
   networking.hostId = "d494711d";
 
   networking.hostName = "pi";
@@ -85,7 +99,7 @@
   fileSystems."/var/log" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=512M" ];
+    options = ["defaults" "size=512M"];
   };
   services.journald.extraConfig = ''
     SystemMaxUse=300M
