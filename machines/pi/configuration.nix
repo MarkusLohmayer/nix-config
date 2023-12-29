@@ -43,6 +43,13 @@
     networks."@ssid@".psk = "@pass@";
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      1883 # MQTT
+    ];
+  };
+
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
 
@@ -107,11 +114,30 @@
   '';
 
   sops = {
+    # edit with `nix run nixpkgs#sops ./secrets/secrets.yaml`
     defaultSopsFile = ../../secrets/secrets.yaml;
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
     secrets = {
       wifi = {};
+      mqtt_root = {};
+      mqtt_meter = {};
     };
+  };
+
+  services.mosquitto = {
+    enable = true;
+    listeners = [
+      {
+        users.root = {
+          acl = ["readwrite #"];
+          passwordFile = config.sops.secrets."mqtt_root".path;
+        };
+        users.meter = {
+          acl = ["write meter/#"];
+          passwordFile = config.sops.secrets."mqtt_meter".path;
+        };
+      }
+    ];
   };
 
   system = {
