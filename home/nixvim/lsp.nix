@@ -14,6 +14,8 @@
 
           lua-ls.enable = true;
 
+          marksman.enable = true;
+
           nil_ls.enable = true;
 
           texlab = {
@@ -87,7 +89,6 @@
                 extra_args = { "--fast" },
               }
             '';
-            cbfmt.enable = true; # code blocks in Markdown
             # nixpkgs_fmt.enable = true; # Formatter for nixpkgs
             prettier.enable = true;
             prettier.withArgs = ''

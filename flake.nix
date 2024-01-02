@@ -20,7 +20,8 @@
     };
 
     nixvim = {
-      url = "github:pta2002/nixvim";
+      url = "github:nix-community/nixvim";
+      # url = "git+file:///Users/markus/git/MarkusLohmayer/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -79,7 +80,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./machines/m-one/home.nix
+          ./machines/m-one/markus.nix
 
           ./home/git.nix
           ./home/julia.nix
@@ -89,12 +90,13 @@
           ./home/ssh.nix
           ./home/starhip.nix
           ./home/terminal.nix
+          ./home/tmate.nix
           ./home/tmux.nix
           ./home/zsh.nix
 
           ./home/kitty.nix
           ./home/vscode.nix
-          ./home/zathura.nix
+          # ./home/zathura.nix
         ];
       };
 

@@ -7,7 +7,6 @@ tap "simnalamburt/x" # totp
 
 brew "mosh"
 brew "trash"
-# brew "youtube-dl"
 brew "totp" # Time-based One-time Password Algorithmus
 
 # fix issue 'tput: unknown terminal "tmux-256color"'
@@ -22,7 +21,6 @@ cask "iina"
 cask "latexit"
 cask "launchbar"
 cask "microsoft-remote-desktop"
-cask "omnifocus"
 cask "omnigraffle"
 cask "skim"
 cask "tor-browser"

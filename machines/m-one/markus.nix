@@ -11,6 +11,8 @@
     # convert files from one markup format into another
     pandoc
 
+    rsync
+
     # convert audio and video
     ffmpeg
 

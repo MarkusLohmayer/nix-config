@@ -9,6 +9,7 @@ acsets
 adjoint
 adjointness
 adjoints
+ADT
 advected
 advection
 advects
@@ -137,6 +138,7 @@ epimorphisms
 Erlangen
 Euclidian
 Eulerian
+evaluator
 exemplarily
 exergetic
 exergy
@@ -260,6 +262,7 @@ monomorphisms
 monospace
 morphism
 morphisms
+MQTT
 mulchen
 multibody
 multibond
@@ -339,6 +342,7 @@ pseudofunctorially
 pushforward
 pushout
 pushouts
+PWM
 Radko
 raison d'être
 Ralf
@@ -378,6 +382,7 @@ Simulink
 SMC
 SMCs
 stator
+Stegplatten
 Stramigioli
 Störmer
 subalgebra
@@ -416,6 +421,7 @@ TikZ
 timestamp
 timesteps
 tmux
+TODO
 tokamak
 TOML
 Topos

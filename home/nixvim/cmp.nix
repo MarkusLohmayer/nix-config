@@ -4,15 +4,12 @@
   ...
 }: {
   config = {
-
     extraPlugins = with pkgs.vimPlugins; [
       friendly-snippets
     ];
 
     plugins = {
-
       cmp-buffer.enable = true;
-
       cmp-emoji.enable = true;
       cmp-latex-symbols.enable = true;
       cmp-path.enable = true;
@@ -52,34 +49,40 @@
         };
 
         mapping = {
+          # use ctrl-k and ctrl-j to select completions
           "<C-k>" = "cmp.mapping.select_prev_item()";
           "<C-j>" = "cmp.mapping.select_next_item()";
+          # ctrl-e aborts completion
           "<C-e>" = "cmp.mapping.abort()";
+          # tab inserts (pre)selected completion
+          "<Tab>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })";
+          # return replaces current text with the actively selected completion
           "<CR>" = ''
-            cmp.mapping {
+            cmp.mapping({
               i = function(fallback)
                 if cmp.visible() and cmp.get_active_entry() then
-                  cmp.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false }
+                  cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
                 else
                   fallback()
                 end
               end,
-              s = cmp.mapping.confirm { select = true },
-              c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
-            },
+              s = cmp.mapping.confirm({ select = true }),
+              c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+            })
           '';
-          "<C-b>" = "cmp.mapping.scroll_docs(-2)";
-          "<C-f>" = "cmp.mapping.scroll_docs(2)";
+          # use ctrl-b and ctrl-f to scroll completions menu
+          "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
         };
       };
 
+      # add vscode-like pictograms to neovim built-in lsp
       lspkind = {
         enable = true;
         # mode = "symbol";
         mode = "symbol_text";
         cmp.enable = true;
       };
-
     };
 
     colorschemes.catppuccin.customHighlights = {
