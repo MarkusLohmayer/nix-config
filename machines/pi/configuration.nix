@@ -35,6 +35,8 @@
   boot.supportedFilesystems = ["zfs"];
   networking.hostId = "d494711d";
 
+  console.enable = false;
+
   networking.hostName = "pi";
 
   networking.wireless = {
@@ -103,6 +105,25 @@
     trim.enable = true;
   };
 
+  services.sanoid = {
+    enable = true;
+    interval = "daily";
+    templates = {
+      local = {
+        autosnap = true;
+        autoprune = true;
+        recursive = "zfs";
+        daily = 31;
+        monthly = 12;
+      };
+    };
+    datasets = {
+      "rpool/root".useTemplate = ["local"];
+      "rpool/home".useTemplate = ["local"];
+      "rpool/var".useTemplate = ["local"];
+    };
+  };
+
   fileSystems."/var/log" = {
     device = "none";
     fsType = "tmpfs";
@@ -138,6 +159,25 @@
         };
       }
     ];
+  };
+
+  services.zigbee2mqtt = {
+    enable = true;
+    settings = {
+      permit_join = false;
+      serial.port = "/dev/ttyUSB0";
+      mqtt = {
+        server = "mqtt://localhost:1883";
+        user = "!secret.yaml user";
+        password = "!secret.yaml password";
+        base_topic = "zigbee";
+      };
+      advanced = {
+        log_level = "warn";
+        log_directory = "/var/log";
+        log_file = "zigbee2mqtt.log";
+      };
+    };
   };
 
   system = {
