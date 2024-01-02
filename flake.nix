@@ -85,6 +85,7 @@
           ./home/git.nix
           ./home/julia.nix
           ./home/latex.nix
+          ./home/media.nix
           ./home/nixvim.nix
           ./home/nushell.nix
           ./home/ssh.nix
