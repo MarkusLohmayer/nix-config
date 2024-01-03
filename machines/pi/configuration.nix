@@ -5,9 +5,9 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    # ./sops.nix
-    # ./wifi.nix
-    # ./iot.nix
+    ./sops.nix
+    ./wifi.nix
+    ./iot.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
