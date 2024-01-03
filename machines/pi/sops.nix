@@ -1,4 +1,4 @@
-{}:{
+{...}:{
   sops = {
     # edit with `nix run nixpkgs#sops ./secrets/secrets.yaml`
     defaultSopsFile = ../../secrets/secrets.yaml;

@@ -1,4 +1,4 @@
-{config}: {
+{config, ...}: {
   sops.secrets = {
     mqtt_root = {};
     mqtt_fusebox = {};

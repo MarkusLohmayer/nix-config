@@ -105,14 +105,12 @@ scp ~/.ssh/id_rsa* ~/.ssh/id_ed25519* markus@192.168.0.3:.ssh/
 Download nix-config and setup home on freshly installed server:
 
 ```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
 git clone git@github.com:MarkusLohmayer/nix-config.git
 cd nix-config
 mkdir -p ~/.local/state/nix/profiles
 ./switch pi_markus
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-mkdir -p ~/.config/sops/age
-nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
 ```
 
 Secret management with `sops-nix`:
@@ -120,15 +118,18 @@ Secret management with `sops-nix`:
 ```bash
 # create a personal SSH key without passphrase
 ssh-keygen -t ed25519 -C markus.lohmayer@gmail.com
+
 # convert SSH key into an age key to encrypt secrets
 mkdir -p ~/.config/sops/age
 nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
-# obtain public key (put into `.sops.yaml` file)
+
+# obtain corresponding public key (for `.sops.yaml` file)
 nix-shell -p age --run "age-keygen -y ~/.config/sops/age/keys.txt"
 
-# convert SSH machine key of server into an age key to decrypt secrets
+# convert SSH machine key of server into an age key to decrypt secrets (for `.sops.yaml` file)
 nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
 
-# edit secrets
+# add/edit secrets
+mkdir -p ./secrets
 nix run nixpkgs#sops ./secrets/secrets.yaml
 ```

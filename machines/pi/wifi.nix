@@ -1,4 +1,4 @@
-{config}: {
+{config, ...}: {
   sops.secrets.wifi = {};
 
   networking.wireless = {

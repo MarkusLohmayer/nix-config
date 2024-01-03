@@ -1,6 +1,6 @@
 keys:
-  - &admin_markus age10yzfu0yeqmhjq75qq9dqtxalgd2sakmzrw7ukfkznmfjcg8v7u8qfqnxe0
-  - &server_pi age15k98fx7s0x2tt942kcd2aj27rstrnfhyxnnwuv89xxhmd7njffequssnlq
+  - &admin_markus age1r5yppy5uvnen28vwj779dssvhx3qf2qygs727e6fkgr4fjn3gugq3g3dtu
+  - &server_pi age15zjs4qzjujfnuzc2mhaq2h3vt2s86dfuuk9uyvdlgsfv9cw53c9svzvl35
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:

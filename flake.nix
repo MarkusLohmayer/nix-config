@@ -117,7 +117,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./machines/pi/home.nix
+          ./machines/pi/markus.nix
 
           ./home/git.nix
           ./home/nixvim.nix
@@ -141,7 +141,7 @@
         };
         modules = [
           nix-index-database.hmModules.nix-index
-          ./machines/nixos-vm/home.nix
+          ./machines/nixos-vm/markus.nix
 
           ./home/git.nix
           ./home/julia.nix
