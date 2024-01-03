@@ -8,6 +8,24 @@
     ./hardware-configuration.nix
   ];
 
+  sops = {
+    # edit with `nix run nixpkgs#sops ./secrets/secrets.yaml`
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+    secrets = {
+      root.neededForUsers = true;
+      markus.neededForUsers = true;
+      wifi = {};
+      mqtt_root = {};
+      mqtt_fusebox = {};
+      mqtt_zigbee = {};
+      zigbee2mqtt = {
+        owner = "zigbee2mqtt";
+        path = "/var/lib/zigbee2mqtt/secret.yaml";
+      };
+    };
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
 
@@ -35,8 +53,6 @@
   boot.supportedFilesystems = ["zfs"];
   networking.hostId = "d494711d";
 
-  console.enable = false;
-
   networking.hostName = "pi";
 
   networking.wireless = {
@@ -52,10 +68,10 @@
     ];
   };
 
+  # console.enable = false;
+
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
-
-  powerManagement.cpuFreqGovernor = "powersafe";
 
   nix = {
     settings = {
@@ -73,11 +89,14 @@
   };
 
   users = {
+    mutableUsers = false;
     defaultUserShell = pkgs.zsh;
     users = {
+      # root.hashedPasswordFile = config.sops.secrets.root.path;
       markus = {
         isNormalUser = true;
         extraGroups = ["wheel"];
+        # hashedPasswordFile = config.sops.secrets.markus.path;
       };
     };
   };
@@ -130,20 +149,10 @@
     options = ["defaults" "size=512M"];
   };
   services.journald.extraConfig = ''
-    SystemMaxUse=300M
+    SystemMaxUse=64M
+    RuntimeMaxUse=64M
     Storage=volatile
   '';
-
-  sops = {
-    # edit with `nix run nixpkgs#sops ./secrets/secrets.yaml`
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    secrets = {
-      wifi = {};
-      mqtt_root = {};
-      mqtt_meter = {};
-    };
-  };
 
   services.mosquitto = {
     enable = true;
@@ -153,9 +162,13 @@
           acl = ["readwrite #"];
           passwordFile = config.sops.secrets."mqtt_root".path;
         };
-        users.meter = {
-          acl = ["write meter/#"];
-          passwordFile = config.sops.secrets."mqtt_meter".path;
+        users.fusebox = {
+          acl = ["readwrite fusebox/#"];
+          passwordFile = config.sops.secrets."mqtt_fusebox".path;
+        };
+        users.zigbee = {
+          acl = ["readwrite zigbee/#"];
+          passwordFile = config.sops.secrets."mqtt_zigbee".path;
         };
       }
     ];
@@ -174,8 +187,8 @@
       };
       advanced = {
         log_level = "warn";
-        log_directory = "/var/log";
-        log_file = "zigbee2mqtt.log";
+        # log_directory = "/var/log";
+        # log_file = "zigbee2mqtt.log";
       };
     };
   };
