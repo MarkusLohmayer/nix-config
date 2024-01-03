@@ -29,6 +29,8 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = {
@@ -39,6 +41,7 @@
     nix-index-database,
     nixvim,
     sops-nix,
+    impermanence,
     ...
   } @ inputs: {
     darwinConfigurations = {
@@ -56,6 +59,7 @@
         modules = [
           ./machines/pi/configuration.nix
           sops-nix.nixosModules.sops
+          impermanence.nixosModules.impermanence
         ];
         specialArgs = {inherit inputs;};
       };

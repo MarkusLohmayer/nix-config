@@ -14,9 +14,9 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
+    { device = "none";
+      fsType = "tmpfs";
+      options = [ "defaults" "size=25%" "mode=755" ];
     };
 
   fileSystems."/boot" =
@@ -30,8 +30,8 @@
       options = [ "zfsutil" ];
     };
 
-  fileSystems."/var" =
-    { device = "rpool/var";
+  fileSystems."/persist" =
+    { device = "rpool/persist";
       fsType = "zfs";
       options = [ "zfsutil" ];
     };

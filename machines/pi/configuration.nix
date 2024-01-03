@@ -92,11 +92,11 @@
     mutableUsers = false;
     defaultUserShell = pkgs.zsh;
     users = {
-      # root.hashedPasswordFile = config.sops.secrets.root.path;
+      root.hashedPasswordFile = config.sops.secrets.root.path;
       markus = {
         isNormalUser = true;
         extraGroups = ["wheel"];
-        # hashedPasswordFile = config.sops.secrets.markus.path;
+        hashedPasswordFile = config.sops.secrets.markus.path;
       };
     };
   };
@@ -108,6 +108,16 @@
     git
     vim
   ];
+
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    files = [
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+    ];
+  };
 
   services.openssh = {
     enable = true;
@@ -137,17 +147,11 @@
       };
     };
     datasets = {
-      "rpool/root".useTemplate = ["local"];
       "rpool/home".useTemplate = ["local"];
-      "rpool/var".useTemplate = ["local"];
+      "rpool/persist".useTemplate = ["local"];
     };
   };
 
-  fileSystems."/var/log" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=512M"];
-  };
   services.journald.extraConfig = ''
     SystemMaxUse=64M
     RuntimeMaxUse=64M
