@@ -1,30 +1,14 @@
 {
   inputs,
-  config,
   pkgs,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
+    # ./sops.nix
+    # ./wifi.nix
+    # ./iot.nix
   ];
-
-  sops = {
-    # edit with `nix run nixpkgs#sops ./secrets/secrets.yaml`
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-    secrets = {
-      root.neededForUsers = true;
-      markus.neededForUsers = true;
-      wifi = {};
-      mqtt_root = {};
-      mqtt_fusebox = {};
-      mqtt_zigbee = {};
-      zigbee2mqtt = {
-        owner = "zigbee2mqtt";
-        path = "/var/lib/zigbee2mqtt/secret.yaml";
-      };
-    };
-  };
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -55,20 +39,9 @@
 
   networking.hostName = "pi";
 
-  networking.wireless = {
-    enable = true;
-    environmentFile = config.sops.secrets."wifi".path;
-    networks."@ssid@".psk = "@pass@";
-  };
+  networking.firewall.enable = true;
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      1883 # MQTT
-    ];
-  };
-
-  # console.enable = false;
+  console.enable = false;
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Berlin";
@@ -92,11 +65,10 @@
     mutableUsers = false;
     defaultUserShell = pkgs.zsh;
     users = {
-      root.hashedPasswordFile = config.sops.secrets.root.path;
       markus = {
         isNormalUser = true;
         extraGroups = ["wheel"];
-        hashedPasswordFile = config.sops.secrets.markus.path;
+        hashedPassword = "$y$j9T$xBfPZyYkqlykHbmRnjucR0$piOsPeXLpMY0360SpfRygb3xUR4d5VaLqohx8uXYg9C";
       };
     };
   };
@@ -157,45 +129,6 @@
     RuntimeMaxUse=64M
     Storage=volatile
   '';
-
-  services.mosquitto = {
-    enable = true;
-    listeners = [
-      {
-        users.root = {
-          acl = ["readwrite #"];
-          passwordFile = config.sops.secrets."mqtt_root".path;
-        };
-        users.fusebox = {
-          acl = ["readwrite fusebox/#"];
-          passwordFile = config.sops.secrets."mqtt_fusebox".path;
-        };
-        users.zigbee = {
-          acl = ["readwrite zigbee/#"];
-          passwordFile = config.sops.secrets."mqtt_zigbee".path;
-        };
-      }
-    ];
-  };
-
-  services.zigbee2mqtt = {
-    enable = true;
-    settings = {
-      permit_join = false;
-      serial.port = "/dev/ttyUSB0";
-      mqtt = {
-        server = "mqtt://localhost:1883";
-        user = "!secret.yaml user";
-        password = "!secret.yaml password";
-        base_topic = "zigbee";
-      };
-      advanced = {
-        log_level = "warn";
-        # log_directory = "/var/log";
-        # log_file = "zigbee2mqtt.log";
-      };
-    };
-  };
 
   system = {
     stateVersion = "23.11";

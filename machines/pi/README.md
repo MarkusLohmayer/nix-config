@@ -22,6 +22,9 @@ passwd
 DISK1=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2325E8C44F0A-0:0
 DISK2=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2338E8C498CC-0:0
 
+ls $DISK1
+ls $DISK2
+
 wipefs -a $DISK1
 wipefs -a $DISK2
 
@@ -62,19 +65,18 @@ zpool create \
 
 zfs create -o refreservation=10G -o mountpoint=none rpool/reserved
 
-zfs create rpool/root
 zfs create rpool/nix
-zfs create rpool/var
+zfs create rpool/persist
 zfs create rpool/home
 
-mount -t zfs -o zfsutil rpool/root /mnt
+mount -t tmpfs none /mnt
 
 mkdir /mnt/boot
 mount $DISK1-part1 /mnt/boot
 
-mkdir /mnt/nix /mnt/var /mnt/home
+mkdir /mnt/nix /mnt/persist /mnt/home
 mount -t zfs -o zfsutil rpool/nix /mnt/nix
-mount -t zfs -o zfsutil rpool/var /mnt/var
+mount -t zfs -o zfsutil rpool/persist /mnt/persist
 mount -t zfs -o zfsutil rpool/home /mnt/home
 
 nix-shell -p wget unzip
@@ -84,49 +86,49 @@ unzip RPi4_UEFI_Firmware_v1.35.zip
 rm README.md
 rm RPi4_UEFI_Firmware_v1.35.zip
 
-# configure NixOS according to flake in local directory
+# install and configure NixOS according to flake in local directory
 nix-shell -p nixUnstable git
-nixos-generate-config --root /mnt
-cd /mnt/etc/nixos/
 git clone https://github.com/MarkusLohmayer/nix-config
-# copy generated hardware-configuration.nix to machines/pi/
-# and add `options = [ "zfsutil" ]` to every ZFS filesystem
+cd nix-config
 nixos-install --impure --flake '.#pi'
 
 shutdown -h now
 ```
 
-```bash
-passwd markus
-cd /etc/nixos/
-rm configuration.nix hardware-configuration.nix
-mv nix-config /home/markus/
-```
+Copy SSH keys to freshly installed server:
 
 ```bash
 ssh-copy-id markus@192.168.0.3
-scp ~/.ssh/id_rsa* markus@192.168.0.3:.ssh/
+scp ~/.ssh/id_rsa* ~/.ssh/id_ed25519* markus@192.168.0.3:.ssh/
 ```
 
+Download nix-config and setup home on freshly installed server:
+
 ```bash
-sudo chown -R markus:users nix-config
-chmod -R go-rwx nix-config
+git clone git@github.com:MarkusLohmayer/nix-config.git
 cd nix-config
 mkdir -p ~/.local/state/nix/profiles
 ./switch pi_markus
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
+mkdir -p ~/.config/sops/age
+nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
 ```
 
+Secret management with `sops-nix`:
 
 ```bash
-# create a private key for myself (admin)
+# create a personal SSH key without passphrase
+ssh-keygen -t ed25519 -C markus.lohmayer@gmail.com
+# convert SSH key into an age key to encrypt secrets
 mkdir -p ~/.config/sops/age
-nix-shell -p age --run "age-keygen -o ~/.config/sops/age/keys.txt"
+nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
+# obtain public key (put into `.sops.yaml` file)
+nix-shell -p age --run "age-keygen -y ~/.config/sops/age/keys.txt"
 
-# convert SSH machine key of server pi into an age key
+# convert SSH machine key of server into an age key to decrypt secrets
 nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
 
-# add a secret
+# edit secrets
 nix run nixpkgs#sops ./secrets/secrets.yaml
 ```
