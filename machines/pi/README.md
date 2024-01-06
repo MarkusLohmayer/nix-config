@@ -1,6 +1,6 @@
 # pi
 
-NixOS on a virtual machine based on UTM
+NixOS on a Raspberry Pi 4B with [UEFI firmware](https://github.com/pftf/RPi4) and mainline kernel
 
 Download NixOS 23.11 SD-card image for `aarch64` CPUs:
 https://hydra.nixos.org/job/nixos/release-23.11/nixos.sd_image.aarch64-linux

@@ -7,39 +7,15 @@
     ./hardware-configuration.nix
     ./sops.nix
     ./wifi.nix
-    ./iot.nix
+    # ./iot.nix
   ];
 
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
-
-  boot.blacklistedKernelModules = [
-    # Bluetooth
-    "bluetooth"
-    "btbc"
-    "btstdio"
-    "btusb"
-    "hci_uart"
-    # WiFi
-    # "brcmfmac"
-    # "brcmutil"
-    # Joystick
-    "joydev"
-    # Networking
-    "8021q"
-    "bridge"
-    "garp"
-    "stp"
-    "llc"
-    "macvlan"
-  ];
-
-  boot.supportedFilesystems = ["zfs"];
-  networking.hostId = "d494711d";
-
-  networking.hostName = "pi";
-
-  networking.firewall.enable = true;
+  networking = {
+    hostId = "d494711d"; # ZFS
+    hostName = "pi";
+    useDHCP = true;
+    firewall.enable = true;
+  };
 
   console.enable = false;
 
@@ -50,13 +26,11 @@
     settings = {
       experimental-features = ["nix-command" "flakes"];
     };
-
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 60d";
     };
-
     # make nix shell use the same version of nixpkgs as this flake
     registry = {nixpkgs.flake = inputs.nixpkgs;};
   };
