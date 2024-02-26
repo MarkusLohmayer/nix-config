@@ -31,6 +31,11 @@
     };
 
     impermanence.url = "github:nix-community/impermanence";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -60,6 +65,7 @@
           ./machines/pi/configuration.nix
           sops-nix.nixosModules.sops
           impermanence.nixosModules.impermanence
+          inputs.disko.nixosModules.disko
         ];
         specialArgs = {inherit inputs;};
       };

@@ -18,89 +18,40 @@ Flash to USB pen drive (use `dd` or GUI tool such as 'balena etcher').
 
 ## Installation
 
-```bash
-sudo -i
+Start SSH server and set root password:
 
-systemctl start sshd
-passwd
+```bash
+sudo systemctl start sshd
+sudo passwd
 ```
 
 
+Install NixOS:
+
 ```bash
-DISK1=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2325E8C44F0A-0:0
-DISK2=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2338E8C498CC-0:0
+ssh root@192.168.0.3
 
-ls $DISK1
-ls $DISK2
+nix-shell -p wget unzip git
 
-wipefs -a $DISK1
-wipefs -a $DISK2
+git clone https://github.com/MarkusLohmayer/nix-config
+cd nix-config # make sure to comment out indicated modules in ./machines/pi/configuration.nix
 
-parted -a optimal $DISK1 -- mklabel gpt
-parted -a optimal $DISK2 -- mklabel gpt
+nix --experimental-features "nix-command flakes" \
+  run github:nix-community/disko -- \
+  --mode disko ./machines/pi/disko.nix
 
-parted $DISK1 -- mkpart ESP fat32 1MiB 513MiB
-parted $DISK2 -- mkpart ESP fat32 1MiB 513MiB
-
-parted $DISK1 -- set 1 esp on
-parted $DISK2 -- set 1 esp on
-
-parted $DISK1 -- mkpart primary linux-swap 513MiB 4609MiB
-parted $DISK2 -- mkpart primary linux-swap 513MiB 4609MiB
-
-parted -a optimal $DISK1 -- mkpart primary 4609MiB 100%
-parted -a optimal $DISK2 -- mkpart primary 4609MiB 100%
-
-mkfs.fat -F 32 -n boot $DISK1-part1
-mkfs.fat -F 32 -n boot $DISK2-part1
-
-mkswap -L swap $DISK1-part2
-mkswap -L swap $DISK2-part2
-
-swapon $DISK1-part2
-swapon $DISK2-part2
-
-zpool create \
-  -o ashift=12 \
-  -o autotrim=on \
-  -O acltype=posixacl \
-  -O atime=off \
-  -O compression=lz4 \
-  -O dnodesize=auto \
-  -O mountpoint=none \
-  -O xattr=sa \
-  rpool mirror $DISK1-part3 $DISK2-part3
-
-zfs create -o refreservation=10G -o mountpoint=none rpool/reserved
-
-zfs create rpool/nix
-zfs create rpool/persist
-zfs create rpool/home
-
-mount -t tmpfs none /mnt
-
-mkdir /mnt/boot
-mount $DISK1-part1 /mnt/boot
-
-mkdir /mnt/nix /mnt/persist /mnt/home
-mount -t zfs -o zfsutil rpool/nix /mnt/nix
-mount -t zfs -o zfsutil rpool/persist /mnt/persist
-mount -t zfs -o zfsutil rpool/home /mnt/home
-
-nix-shell -p wget unzip
 cd /mnt/boot
 wget https://github.com/pftf/RPi4/releases/download/v1.35/RPi4_UEFI_Firmware_v1.35.zip
 unzip RPi4_UEFI_Firmware_v1.35.zip
 rm README.md
 rm RPi4_UEFI_Firmware_v1.35.zip
 
-nix-shell -p nixUnstable git
-git clone https://github.com/MarkusLohmayer/nix-config
-cd nix-config
-nixos-install --impure --flake '.#pi'
+cd ~/nix-config
+nixos-install --root /mnt --impure --flake '.#pi'
 
 shutdown -h now
 ```
+
 
 Copy SSH keys to freshly installed server:
 
@@ -109,9 +60,12 @@ ssh-copy-id markus@192.168.0.3
 scp ~/.ssh/id_rsa* ~/.ssh/id_ed25519* markus@192.168.0.3:.ssh/
 ```
 
+
 Download nix-config and setup home on freshly installed server:
 
 ```bash
+ssh markus@192.168.0.3
+
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 git clone git@github.com:MarkusLohmayer/nix-config.git
@@ -122,7 +76,6 @@ mkdir -p ~/.local/state/nix/profiles
 
 
 ## Secret management with `sops-nix`
-
 
 ### Setup admin and server keys
 

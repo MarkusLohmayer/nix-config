@@ -5,8 +5,10 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./sops.nix
-    ./wifi.nix
+    ./disko.nix
+    # The modules below are commented out for NixOS installation
+    # ./sops.nix
+    # ./wifi.nix
     # ./iot.nix
   ];
 

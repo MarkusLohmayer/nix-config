@@ -33,44 +33,11 @@
       "macvlan"
       "8021q"
     ];
+    # supportedFilesystems = ["zfs"];
     loader.systemd-boot.enable = true;
-    supportedFilesystems = ["zfs"];
     # loader.generic-extlinux-compatible.enable = false;
     # loader.efi.canTouchEfiVariables = true;
   };
 
-  fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = ["defaults" "size=25%" "mode=755"];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2B6C-7291";
-    fsType = "vfat";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/nix";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/persist" = {
-    device = "rpool/persist";
-    neededForBoot = true;
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
-    options = ["zfsutil"];
-  };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/18c84fc2-7b2e-437f-961c-ea3404f7cb29";}
-    {device = "/dev/disk/by-uuid/2bb3a4be-892b-4f4e-a2c0-7adb93e3f165";}
-  ];
+  fileSystems."/persist".neededForBoot = true;
 }
