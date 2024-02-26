@@ -2,23 +2,31 @@
 
 NixOS on a Raspberry Pi 4B with [UEFI firmware](https://github.com/pftf/RPi4) and mainline kernel
 
+## Prepare installation medium
+
 Download NixOS 23.11 SD-card image for `aarch64` CPUs:
 https://hydra.nixos.org/job/nixos/release-23.11/nixos.sd_image.aarch64-linux
 
-Decompress image and flash to USB pen drive:
+Decompress image:
 
 ```bash
 nix-shell -p zstd --run "unzstd nixos-sd-image-23.11.2082.d02ffbbe834b-aarch64-linux.img.zst"
 ```
 
-Installation:
+Flash to USB pen drive (use `dd` or GUI tool such as 'balena etcher').
+
+
+## Installation
 
 ```bash
 sudo -i
 
 systemctl start sshd
 passwd
+```
 
+
+```bash
 DISK1=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2325E8C44F0A-0:0
 DISK2=/dev/disk/by-id/usb-Micron_CT2000X9PROSSD9_2338E8C498CC-0:0
 
@@ -86,7 +94,6 @@ unzip RPi4_UEFI_Firmware_v1.35.zip
 rm README.md
 rm RPi4_UEFI_Firmware_v1.35.zip
 
-# install and configure NixOS according to flake in local directory
 nix-shell -p nixUnstable git
 git clone https://github.com/MarkusLohmayer/nix-config
 cd nix-config
@@ -113,23 +120,40 @@ mkdir -p ~/.local/state/nix/profiles
 ./switch pi_markus
 ```
 
-Secret management with `sops-nix`:
+
+## Secret management with `sops-nix`
+
+
+### Setup admin and server keys
+
+Create a personal (admin) SSH key without passphrase:
 
 ```bash
-# create a personal SSH key without passphrase
 ssh-keygen -t ed25519 -C markus.lohmayer@gmail.com
+```
 
-# convert SSH key into an age key to encrypt secrets
+Convert SSH key into an age key to encrypt secrets:
+
+```bash
 mkdir -p ~/.config/sops/age
 nix-shell -p ssh-to-age --run "ssh-to-age -private-key -i ~/.ssh/id_ed25519 > ~/.config/sops/age/keys.txt"
+```
 
-# obtain corresponding public key (for `.sops.yaml` file)
+Obtain corresponding public key (for `.sops.yaml` file)
+
+```bash
 nix-shell -p age --run "age-keygen -y ~/.config/sops/age/keys.txt"
+```
 
-# convert SSH machine key of server into an age key to decrypt secrets (for `.sops.yaml` file)
+Convert SSH machine key of server into an age key to decrypt secrets (for `.sops.yaml` file):
+
+```bash
 nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
+```
 
-# add/edit secrets
+### Add or edit secrets
+
+```bash
 mkdir -p ./secrets
 nix run nixpkgs#sops ./secrets/secrets.yaml
 ```
