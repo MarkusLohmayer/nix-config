@@ -23,6 +23,6 @@
     # file extensions to remove when cleaning (`latexmk -c`)
     # (should match with the LaTeX section in the global ignore file of Git)
     # TODO it seems not possible to remove *-eps-converted-to.pdf and *-blx.bib
-    $clean_ext = 'aux bbl bcf blg fdb_latexmk fls glo ist nav nlo out ptc run.xml snm spl synctex(busy) toc upa xdv dvi';
+    $clean_ext = 'aux bbl bcf blg fdb_latexmk fls glo ist loc nav nlo out ptc run.xml snm soc spl synctex(busy) toc upa xdv dvi';
   '';
 }

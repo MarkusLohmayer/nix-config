@@ -55,6 +55,7 @@
         modules = [
           ./machines/m-one/configuration.nix
         ];
+        specialArgs = {inherit inputs;};
       };
     };
 

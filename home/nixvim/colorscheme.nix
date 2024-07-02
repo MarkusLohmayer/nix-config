@@ -1,20 +1,22 @@
-{helpers, ...}: {
+{...}: {
   config = {
     colorschemes.catppuccin = {
       enable = true;
-      flavour = "mocha";
-      background.dark = "mocha";
-      dimInactive = {
-        enabled = true;
-        percentage = 0.25;
+      settings = {
+        flavour = "mocha";
+        dim_inactive = {
+          enabled = true;
+          percentage = 0.25;
+        };
+        custom_highlights = ''
+          function(colors)
+            return {
+              Comment = { fg = colors.flamingo },
+              WinSeparator = { fg = colors.flamingo },
+            }
+          end
+        '';
       };
-      customHighlights = {
-        Comment.fg = helpers.mkRaw "colors.flamingo";
-        WinSeparator.fg = helpers.mkRaw "colors.flamingo";
-      };
-      # terminalColors = true;
-      # disableItalic = false;
-      # disableBold = false;
     };
   };
 }

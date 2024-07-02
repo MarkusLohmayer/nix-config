@@ -4,21 +4,23 @@
       lsp = {
         enable = true;
         servers = {
-          bashls.enable = true;
+          bashls.enable = true; # Bash
 
-          clangd.enable = true;
+          clangd.enable = true; # C/C++
 
-          hls.enable = true;
+          hls.enable = true; # Haskell
 
           julials.enable = true; # must be installed from Julia
 
-          lua-ls.enable = true;
+          lua-ls.enable = true; # Lua
 
-          marksman.enable = true;
+          marksman.enable = true; # Markdown
 
-          nil_ls.enable = true;
+          nil_ls.enable = true; # Nix
 
-          texlab = {
+          taplo.enable = true; # TOML
+
+          texlab = { # LaTeX
             enable = true;
             extraOptions.settings.texlab = {
               build = {
@@ -27,11 +29,6 @@
                 onSave = true;
                 forwardSearchAfter = true;
               };
-              # for debugging:
-              # forwardSearch = {
-              #   executable = "kitty";
-              #   args = ["%l"];
-              # };
               forwardSearch = {
                 executable = "/Applications/Skim.app/Contents/SharedSupport/displayline";
                 args = [
@@ -99,7 +96,6 @@
             '';
             shfmt.enable = true; # shell scripts
             stylua.enable = true; # Lua
-            taplo.enable = true; # TOML
           };
         };
       };

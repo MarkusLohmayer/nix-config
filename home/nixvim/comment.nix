@@ -1,10 +1,12 @@
 {...}: {
   config = {
-    plugins.comment-nvim = {
+    plugins.comment = {
       enable = true;
-      mappings = {
-        basic = true;
-        extra = true;
+      settings = {
+        mappings = {
+          basic = true;
+          extra = true;
+        };
       };
     };
   };

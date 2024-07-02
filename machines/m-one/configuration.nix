@@ -2,30 +2,23 @@
 # https://daiderd.com/nix-darwin/manual/
 # https://github.com/LnL7/nix-darwin/blob/master/modules/examples/lnl.nix
 {
+  inputs,
   pkgs,
-  lib,
   ...
 }: {
   nix = {
     settings = {
-      substituters = [
-        "https://cache.nixos.org/"
-      ];
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      ];
-      trusted-users = [
-        "@admin"
-      ];
-      auto-optimise-store = false;
+      experimental-features = ["nix-command" "flakes"];
     };
-    extraOptions =
-      ''
-        experimental-features = nix-command flakes
-      ''
-      + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-        extra-platforms = x86_64-darwin aarch64-darwin
-      '';
+    gc = {
+      automatic = true;
+      interval = { Weekday = 0; Hour = 0; Minute = 0; };
+      options = "--delete-older-than 60d";
+      user = "markus";
+    };
+    # make nix shell use the same version of nixpkgs as this flake
+    registry = {nixpkgs.flake = inputs.nixpkgs;};
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     configureBuildUsers = true;
   };
 
@@ -42,7 +35,7 @@
   ];
 
   environment.variables = {
-      XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_CONFIG_HOME = "$HOME/.config";
   };
 
   fonts = {

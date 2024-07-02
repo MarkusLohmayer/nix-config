@@ -35,6 +35,7 @@
     };
     # make nix shell use the same version of nixpkgs as this flake
     registry = {nixpkgs.flake = inputs.nixpkgs;};
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
   };
 
   users = {

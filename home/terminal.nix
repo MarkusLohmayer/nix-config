@@ -23,7 +23,6 @@
   # modern replacement for `ls`
   programs.eza = {
     enable = true;
-    enableAliases = true;
   };
 
   # CPU / memory usage monitor
@@ -49,6 +48,8 @@
     "...." = "../../..";
 
     l = "ls -lah";
+
+    idm = "totp get idm | pbcopy";
   };
 
   home.sessionPath = [

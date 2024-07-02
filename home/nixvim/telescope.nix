@@ -1,80 +1,33 @@
-{helpers, ...}: {
+{...}: {
   config = {
     plugins.telescope = {
       enable = true;
       extensions.frecency.enable = true;
-      extensions.project-nvim.enable = true;
-      extraOptions = {
+      settings = {
         pickers.colorscheme.enable_preview = true;
-      };
-      defaults = {
-        prompt_prefix = " ";
-        selection_caret = "❯ ";
-        path_display = [
-          "truncate"
-        ];
-        sorting_strategy = "ascending";
-        layout_config = {
-          horizontal = {
-            prompt_position = "top";
-            preview_width = 0.55;
+        defaults = {
+          prompt_prefix = " ";
+          selection_caret = "❯ ";
+          path_display = [
+            "truncate"
+          ];
+          sorting_strategy = "ascending";
+          layout_config = {
+            horizontal = {
+              prompt_position = "top";
+              preview_width = 0.55;
+            };
+            vertical = {
+              mirror = false;
+            };
+            width = 0.87;
+            height = 0.80;
+            preview_cutoff = 120;
           };
-          vertical = {
-            mirror = false;
-          };
-          width = 0.87;
-          height = 0.80;
-          preview_cutoff = 120;
         };
       };
     };
-    colorschemes.catppuccin.customHighlights = {
-      TelescopeBorder = {
-        fg = helpers.mkRaw "colors.mantle";
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopeNormal = {
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopePreviewBorder = {
-        fg = helpers.mkRaw "colors.crust";
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopePreviewNormal = {
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopePreviewTitle = {
-        fg = helpers.mkRaw "colors.crust";
-        bg = helpers.mkRaw "colors.green";
-      };
-      TelescopePromptBorder = {
-        fg = helpers.mkRaw "colors.mantle";
-        bg = helpers.mkRaw "colors.mantle";
-      };
-      TelescopePromptNormal = {
-        fg = helpers.mkRaw "colors.text";
-        bg = helpers.mkRaw "colors.mantle";
-      };
-      TelescopePromptPrefix = {
-        fg = helpers.mkRaw "colors.red";
-        bg = helpers.mkRaw "colors.mantle";
-      };
-      TelescopePromptTitle = {
-        fg = helpers.mkRaw "colors.crust";
-        bg = helpers.mkRaw "colors.red";
-      };
-      TelescopeResultsBorder = {
-        fg = helpers.mkRaw "colors.crust";
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopeResultsNormal = {
-        bg = helpers.mkRaw "colors.crust";
-      };
-      TelescopeResultsTitle = {
-        fg = helpers.mkRaw "colors.crust";
-        bg = helpers.mkRaw "colors.crust";
-      };
-    };
+
     keymaps = [
       {
         options.desc = "resume previous search";

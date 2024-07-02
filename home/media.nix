@@ -3,6 +3,8 @@
     # convert audio and video
     ffmpeg
 
+    audacity
+
     # download video (or audio) from various streaming sites
     yt-dlp
 

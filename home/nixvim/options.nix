@@ -1,6 +1,6 @@
 {...}: {
   config = {
-    options = {
+    opts = {
       backup = false;
       writebackup = false;
       swapfile = false;
@@ -39,6 +39,7 @@
 
       spell = true;
       spelllang = "en_us,de";
+      spellfile = "~/.config/nvim/spell/en.utf-8.add";
 
       termguicolors = true;
 
@@ -68,6 +69,8 @@
       loaded_perl_provider = 0;
       loaded_python_provider = 0;
       loaded_python3_provider = 0;
+
+      markdown_folding = 1;
     };
   };
 }

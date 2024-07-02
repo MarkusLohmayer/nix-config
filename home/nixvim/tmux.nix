@@ -3,8 +3,8 @@ let
   slimux = pkgs.fetchFromGitHub {
     owner = "EvWilson";
     repo = "slimux.nvim";
-    rev = "bd12bc865d5a70d6025a801df95996e954f9ac31";
-    sha256 = "FX+WQFUzccfi2fTCx0ntgTfdBTlJFqMGJaQsfQt7Z4Q=";
+    rev = "0fee8804d95fa2710ee50fb2cd187589f8561d76";
+    sha256 = "FXfx07M+Tcclh33AGLrVi9mTBOwEGKdGcurAkCiEXmg=";
   };
 in
 {

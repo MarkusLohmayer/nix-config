@@ -22,6 +22,7 @@
         nixvimInjections = true; # Lua in extraConfigLua
 
         indent = true;
+        folding = false;
       };
 
       rainbow-delimiters.enable = true;
