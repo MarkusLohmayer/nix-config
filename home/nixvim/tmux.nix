@@ -1,14 +1,12 @@
-{pkgs, ...}:
-let
+{pkgs, ...}: let
   slimux = pkgs.fetchFromGitHub {
     owner = "EvWilson";
     repo = "slimux.nvim";
     rev = "0fee8804d95fa2710ee50fb2cd187589f8561d76";
     sha256 = "FXfx07M+Tcclh33AGLrVi9mTBOwEGKdGcurAkCiEXmg=";
   };
-in
-{
-  config = {
+in {
+  programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       Navigator-nvim
       slimux

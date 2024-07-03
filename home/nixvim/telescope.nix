@@ -1,5 +1,5 @@
 {...}: {
-  config = {
+  programs.nixvim = {
     plugins.telescope = {
       enable = true;
       extensions.frecency.enable = true;

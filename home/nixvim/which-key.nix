@@ -1,11 +1,13 @@
 {...}: {
-  config.plugins.which-key = {
-    enable = true;
-    disable.filetypes = ["TelescopePrompt"];
-    icons = {
-      group = "";
-      separator = "";
+  programs.nixvim = {
+    plugins.which-key = {
+      enable = true;
+      disable.filetypes = ["TelescopePrompt"];
+      icons = {
+        group = "";
+        separator = "";
+      };
+      window.border = "single";
     };
-    window.border = "single";
   };
 }

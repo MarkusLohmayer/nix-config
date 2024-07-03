@@ -1,9 +1,8 @@
 {
   pkgs,
-  # helpers,
   ...
 }: {
-  config = {
+  programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       (lualine-lsp-progress.overrideAttrs (_: {
         src = pkgs.fetchFromGitHub {

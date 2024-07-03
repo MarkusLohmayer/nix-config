@@ -1,5 +1,5 @@
 {...}: {
-  config = {
+  programs.nixvim = {
     plugins.barbar = {
       enable = true;
       animation = true;

@@ -97,7 +97,7 @@
           ./home/julia.nix
           ./home/latex.nix
           ./home/media.nix
-          ./home/nixvim.nix
+          ./home/nixvim
           ./home/nushell.nix
           ./home/ssh.nix
           ./home/starhip.nix
@@ -127,7 +127,7 @@
           ./machines/pi/markus.nix
 
           ./home/git.nix
-          ./home/nixvim.nix
+          ./home/nixvim
           ./home/ssh.nix
           ./home/starhip.nix
           ./home/terminal.nix
@@ -152,7 +152,7 @@
 
           ./home/git.nix
           ./home/julia.nix
-          ./home/nixvim.nix
+          ./home/nixvim
           ./home/ssh.nix
           ./home/starhip.nix
           ./home/terminal.nix

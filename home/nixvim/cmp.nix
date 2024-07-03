@@ -1,9 +1,8 @@
 {pkgs, ...}: {
-  config = {
+  programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       friendly-snippets
     ];
-
     plugins = {
       cmp = {
         enable = true;

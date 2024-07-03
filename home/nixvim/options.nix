@@ -1,5 +1,5 @@
-{homeDirectory, ...}: {
-  config = {
+{config, ...}: {
+  programs.nixvim = {
     opts = {
       backup = false;
       writebackup = false;
@@ -39,9 +39,9 @@
 
       spell = true;
       spelllang = "en_us,de";
-      spellfile = "${homeDirectory}/nix-config/home/nixvim/spell.utf-8.add";
+      spellfile = "${config.home.homeDirectory}/nix-config/home/nixvim/spell.utf-8.add";
 
-      termguicolors = true;
+      # termguicolors = true;
 
       timeout = true;
       timeoutlen = 300;

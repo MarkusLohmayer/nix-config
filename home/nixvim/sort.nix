@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  config = {
+  programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [
       sort-nvim
     ];
