@@ -3,7 +3,6 @@
     enable = true;
     dotDir = ".config/zsh";
     enableCompletion = true;
-    # enableAutosuggestions = true;
     autocd = true; # enter directory if typed directly into shell
     history.extended = true; # save timestamp in history
     initExtra = ''

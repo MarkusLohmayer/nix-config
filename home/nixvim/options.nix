@@ -1,4 +1,4 @@
-{...}: {
+{homeDirectory, ...}: {
   config = {
     opts = {
       backup = false;
@@ -39,7 +39,7 @@
 
       spell = true;
       spelllang = "en_us,de";
-      spellfile = "~/.config/nvim/spell/en.utf-8.add";
+      spellfile = "${homeDirectory}/nix-config/home/nixvim/spell.utf-8.add";
 
       termguicolors = true;
 
