@@ -32,77 +32,67 @@
       {
         options.desc = "resume previous search";
         key = "<leader>s<cr>";
-        action = ''function() require("telescope.builtin").resume() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").resume() end'';
         options.silent = true;
       }
       {
         options.desc = "search files";
         key = "<leader>sf";
-        action = ''function() require("telescope.builtin").find_files() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").find_files() end'';
         options.silent = true;
       }
       {
         options.desc = "search (hidden) files";
         key = "<leader>sF";
-        action = ''function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end'';
         options.silent = true;
       }
       {
         options.desc = "search words";
         key = "<leader>sw";
-        action = ''function() require("telescope.builtin").live_grep() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").live_grep() end'';
         options.silent = true;
       }
       {
         options.desc = "search words (in hidden files)";
         key = "<leader>sW";
-        action = ''
+        action.__raw = ''
           function()
             require("telescope.builtin").live_grep {
               additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
             }
           end
         '';
-        lua = true;
         options.silent = true;
       }
       {
         options.desc = "search buffers";
         key = "<leader>sb";
-        action = ''function() require("telescope.builtin").buffers() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").buffers() end'';
         options.silent = true;
       }
       {
         options.desc = "search word under cursor";
         key = "<leader>sc";
-        action = ''function() require("telescope.builtin").grep_string() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").grep_string() end'';
         options.silent = true;
       }
       {
         options.desc = "search Vim commands";
         key = "<leader>sC";
-        action = ''function() require("telescope.builtin").commands() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").commands() end'';
         options.silent = true;
       }
       {
         options.desc = "search Vim keymaps";
         key = "<leader>sk";
-        action = ''function() require("telescope.builtin").keymaps() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").keymaps() end'';
         options.silent = true;
       }
       {
         options.desc = "search Vim themes";
         key = "<leader>st";
-        action = ''function() require("telescope.builtin").colorscheme { enable_preview = true } end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").colorscheme { enable_preview = true } end'';
         options.silent = true;
       }
       {
@@ -114,36 +104,31 @@
       {
         options.desc = "find Git branches";
         key = "<leader>sb";
-        action = ''function() require("telescope.builtin").git_branches() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").git_branches() end'';
         options.silent = true;
       }
       {
         options.desc = "find Git commits";
         key = "<leader>sc";
-        action = ''function() require("telescope.builtin").git_commits() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").git_commits() end'';
         options.silent = true;
       }
       {
         options.desc = "Git status";
         key = "<leader>st";
-        action = ''function() require("telescope.builtin").git_status() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").git_status() end'';
         options.silent = true;
       }
       {
         options.desc = "Search diagnostics";
         key = "<leader>sD";
-        action = ''function() require("telescope.builtin").diagnostics() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").diagnostics() end'';
         options.silent = true;
       }
       {
         options.desc = "Search symbols";
         key = "<leader>ss";
-        action = ''function() require("telescope.builtin").lsp_document_symbols() end'';
-        lua = true;
+        action.__raw = ''function() require("telescope.builtin").lsp_document_symbols() end'';
         options.silent = true;
       }
     ];

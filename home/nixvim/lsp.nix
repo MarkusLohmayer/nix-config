@@ -16,7 +16,7 @@
 
           marksman.enable = true; # Markdown
 
-          nil_ls.enable = true; # Nix
+          nil-ls.enable = true; # Nix
 
           taplo.enable = true; # TOML
 
@@ -81,14 +81,14 @@
           formatting = {
             alejandra.enable = true; # Nix
             black.enable = true; # Python
-            black.withArgs = ''
+            black.settings = ''
               {
                 extra_args = { "--fast" },
               }
             '';
             # nixpkgs_fmt.enable = true; # Formatter for nixpkgs
             prettier.enable = true;
-            prettier.withArgs = ''
+            prettier.settings = ''
               {
                 extra_filetypes = { "svelte" },
                 extra_args = { "--no-semi", "--single-quote" },

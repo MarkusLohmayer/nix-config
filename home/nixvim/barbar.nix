@@ -2,33 +2,17 @@
   programs.nixvim = {
     plugins.barbar = {
       enable = true;
-      animation = true;
-      clickable = true;
-      semanticLetters = true;
-      excludeFileNames = ["alpha"];
-      icons = {
-        button = "";
-        diagnostics = {
-          error = {
-            enable = true;
-            icon = "ﬀ";
+      settings = {
+        animation = true;
+        clickable = true;
+        maximum_length = 30;
+        maximum_padding = 1;
+        minimum_padding = 1;
+        semantic_letters = true;
+        sidebar_filetypes = {
+          "neo-tree" = {
+            event = "BufWipeout";
           };
-          hint.enable = true;
-        };
-        filetype = {
-          enable = true;
-          customColors = true;
-        };
-        modified.button = "●";
-        pinned.button = "";
-        inactive.button = "×";
-      };
-      maximumPadding = 1;
-      minimumPadding = 1;
-      maximumLength = 30;
-      sidebarFiletypes = {
-        "neo-tree" = {
-          event = "BufWipeout";
         };
       };
     };

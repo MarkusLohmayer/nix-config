@@ -2,12 +2,14 @@
   programs.nixvim = {
     plugins.which-key = {
       enable = true;
-      disable.filetypes = ["TelescopePrompt"];
-      icons = {
-        group = "";
-        separator = "";
+      settings = {
+        icons = {
+          group = "";
+          separator = "";
+        };
+        disable.ft = ["TelescopePrompt"];
+        win.border = "single";
       };
-      window.border = "single";
     };
   };
 }

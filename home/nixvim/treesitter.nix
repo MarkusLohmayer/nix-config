@@ -3,28 +3,25 @@
     plugins = {
       treesitter = {
         enable = true;
-        nixGrammars = true; # install grammars with Nix
-        ensureInstalled = [
-          "bash"
-          "c"
-          "c++"
-          "haskell"
-          "html"
-          "julia"
-          "latex"
-          "lua"
-          "markdown"
-          "nix"
-          "python"
-          "toml"
-          "yaml"
-        ];
-        nixvimInjections = true; # Lua in extraConfigLua
-
-        indent = true;
-        folding = false;
+        settings = {
+          ensureInstalled = [
+            "bash"
+            "c"
+            "c++"
+            "haskell"
+            "html"
+            "julia"
+            "latex"
+            "lua"
+            "markdown"
+            "nix"
+            "python"
+            "toml"
+            "yaml"
+          ];
+          indent.enable = true;
+        };
       };
-
       rainbow-delimiters.enable = true;
     };
   };
