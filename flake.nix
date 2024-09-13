@@ -70,6 +70,7 @@
         ];
         specialArgs = {inherit inputs;};
       };
+
       nixos-vm = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
@@ -100,7 +101,7 @@
           ./home/nixvim
           ./home/nushell.nix
           ./home/ssh.nix
-          ./home/starhip.nix
+          ./home/starship.nix
           ./home/terminal.nix
           ./home/tmate.nix
           ./home/tmux.nix
@@ -129,7 +130,7 @@
           ./home/git.nix
           ./home/nixvim
           ./home/ssh.nix
-          ./home/starhip.nix
+          ./home/starship.nix
           ./home/terminal.nix
           ./home/tmux.nix
           ./home/zsh.nix
@@ -154,7 +155,7 @@
           ./home/julia.nix
           ./home/nixvim
           ./home/ssh.nix
-          ./home/starhip.nix
+          ./home/starship.nix
           ./home/terminal.nix
           ./home/tmux.nix
           ./home/zsh.nix
