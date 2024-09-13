@@ -1,15 +1,15 @@
-{pkgs, ...}: {
+{pkgs-stable, ...}: {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions;
+    package = pkgs-stable.vscodium;
+    extensions = with pkgs-stable.vscode-extensions;
       [
         james-yu.latex-workshop
         mkhl.direnv
         vscodevim.vim
         yzhang.markdown-all-in-one
       ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ++ pkgs-stable.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "language-julia";
           publisher = "julialang";

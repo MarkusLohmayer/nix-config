@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +43,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-stable,
     darwin,
     home-manager,
     nix-index-database,
@@ -88,6 +91,9 @@
           ];
         };
         extraSpecialArgs = {
+          pkgs-stable = import nixpkgs-stable {
+            system = "aarch64-darwin";
+          };
           inherit nixvim;
         };
         modules = [
