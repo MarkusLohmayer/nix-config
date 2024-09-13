@@ -1,8 +1,6 @@
 # Brewfile
 
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "simnalamburt/x" # totp
 
 brew "mosh"
@@ -24,4 +22,5 @@ cask "microsoft-remote-desktop"
 cask "omnigraffle"
 cask "skim"
 cask "tor-browser"
+# cask "vlc"
 cask "zoom"
