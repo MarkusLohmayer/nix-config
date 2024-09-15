@@ -4,7 +4,7 @@
     shortcut = "a";
     aggressiveResize = true;
     baseIndex = 1;
-    escapeTime = 0;
+    escapeTime = 10;
     clock24 = true;
     keyMode = "vi";
     mouse = true;
@@ -33,6 +33,7 @@
 
       set -g status-right '#h #(TZ="UTC" date +%%H:%%M) UTC'
     '';
+    terminal = "screen-256color";
   };
 
   home.shellAliases = {

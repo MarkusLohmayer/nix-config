@@ -4,7 +4,7 @@
 
     ghostscript
 
-    pympress
+    # pympress
   ];
 
   xdg.configFile."latexmk/latexmkrc".text = ''

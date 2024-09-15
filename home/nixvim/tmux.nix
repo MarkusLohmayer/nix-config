@@ -17,9 +17,11 @@ in {
       local slimux = require "slimux"
       slimux.setup {
         target_socket = slimux.get_tmux_socket(),
-        target_pane = string.format("{last}", slimux.get_tmux_window()),
+        target_pane = string.format("%s.1", slimux.get_tmux_window()),
+        escaped_strings = { '\\', ';', '"', '$' },
       }
     '';
+        # target_pane = '{last}'
     keymaps = [
       {
         options.desc = "move left";

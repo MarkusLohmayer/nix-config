@@ -16,25 +16,27 @@
     plugins = {
       lualine = {
         enable = true;
-        globalstatus = true;
-        iconsEnabled = true;
-        theme = "catppuccin";
-        componentSeparators = {
-          left = "";
-          right = "";
-        };
-        sectionSeparators = {
-          left = "";
-          right = "";
-        };
-        alwaysDivideMiddle = true;
-        sections = {
-          lualine_a = ["mode"];
-          lualine_b = ["branch" "diff"];
-          lualine_c = ["diagnostics"];
-          lualine_x = ["spaces" "encoding" "filetype"];
-          lualine_y = ["location"];
-          lualine_z = ["progress"];
+        settings = {
+          sections = {
+            lualine_a = ["mode"];
+            lualine_b = ["branch" "diff"];
+            lualine_c = ["diagnostics"];
+            lualine_x = ["spaces" "encoding" "filetype"];
+            lualine_y = ["location"];
+            lualine_z = ["progress"];
+          };
+          alwaysDivideMiddle = true;
+          componentSeparators = {
+            left = "";
+            right = "";
+          };
+          sectionSeparators = {
+            left = "";
+            right = "";
+          };
+          iconsEnabled = true;
+          globalstatus = true;
+          theme = "catppuccin";
         };
       };
     };

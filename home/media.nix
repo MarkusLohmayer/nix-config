@@ -9,7 +9,7 @@
     yt-dlp
 
     # TUI-based music player
-    termusic
+    # termusic
   ];
 
   home.shellAliases."audio-dl" = "yt-dlp -i --extract-audio --audio-format mp3 --audio-quality 0";
