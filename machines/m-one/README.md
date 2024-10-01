@@ -80,6 +80,12 @@ curl -O https://raw.githubusercontent.com/xv0x7c0/osx-us-altgr-intl/master/us-al
 sudo mv us-altgr-intl.keylayout /Library/Keyboard\ Layouts
 ```
 
+Go to System Preferences / Keyboard / Input Sources and add the us-altgr-intl layout.
+To make the custom layout the default one:
+Go to System Preferences / Users & Groups / Login Options and check Show Input menu in login window.
+Go to login screen and select the us-altgr-intl layout (at the top right).
+Go to System Preferences / Keyboard / Input Sources and remove the other layout.
+
 
 ### Install Apple Rosetta (x86 emulation on arm64)
 

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    julia-bin
+    # julia-bin
   ];
 
   home.file.".julia/config/startup.jl".text = ''
@@ -52,4 +52,8 @@
   home.shellAliases = {
     "pluto" = "julia -e 'using Pluto; Pluto.run()'";
   };
+
+  home.sessionPath = [
+    "/Applications/Julia-1.11.app/Contents/Resources/julia/bin"
+  ];
 }
